@@ -1,0 +1,1704 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class="">
+<head prefix="og:http://ogp.me/ns#">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+    <title>Page Not Found</title>
+    <meta property="og:title" content="Page Not Found" />
+    <meta property="og:site_name" content="Acuity Brands" />
+    <meta property="og:description" content="Whoops! Looks like something is wrong here. Let&#39;s get you back on track. Try browsing by either products, resources, tech support, warranty, or how to buy." />
+    <meta name="image" property="og:image" content="/-/media/abl/acuitybrands/images/social-logos/ab-green-logo.png" />
+    <meta name="description" content="Whoops! Looks like something is wrong here. Let&#39;s get you back on track. Try browsing by either products, resources, tech support, warranty, or how to buy." />
+        <meta name="robots" content="INDEX, FOLLOW" />
+    <meta http-equiv="content-language" content="en" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="last-modified" content="2023-08-10T21:24:26.000Z" />
+    <link rel="canonical" href="https://www.acuitybrands.com/404" />
+            <link rel="alternate" hreflang="en" href="https://www.acuitybrands.com/en/404" />
+            <link rel="alternate" hreflang="fr-CA" href="https://www.acuitybrands.com/fr-ca/404" />
+            <link rel="alternate" hreflang="x-default" href="https://www.acuitybrands.com/404" />
+
+    <meta property="og:url" content="https://www.acuitybrands.com/404" />
+
+    <script src="//consent.trustarc.com/autoblockasset/core.min.js?domain=acuitybrands-ayi.com"></script>
+<script src="//consent.trustarc.com/autoblockoptout?domain=acuitybrands-ayi.com"></script>
+<script async="async" type="text/javascript" crossorigin="" src='//consent.trustarc.com/notice?domain=acuitybrands-ayi.com&c=teconsent&js=nj&noticeType=bb&gtm=1&text=true&pcookie'></script>
+    
+<meta name="VIcurrentDateTime" content="638824633944069811" />
+<meta name="VirtualFolder" content="/" />
+<script type="text/javascript" src="/layouts/system/VisitorIdentification.js"></script>
+
+        <link rel="icon" href=/-/media/abl/shared-content/images/favicons/favicon_green.ico type="image/x-icon" />
+    
+
+
+<div id="myDiv"> </div>
+<script>
+    function handle404Error(el, failed) {
+        if (failed || (el.sheet.cssRules && !el.sheet.cssRules.length)) {
+            document.getElementById("myDiv").innerHTML = '<link rel="stylesheet" type="text/css" href="">';
+            var link = document.createElement("link");
+            link.href = "/Assets/css/fallback/bootstrap.min.css";
+            link.type = "text/css";
+            link.rel = "stylesheet";
+            link.media = "screen,print";
+
+            document.getElementsByTagName("head")[0].appendChild(link);
+        }
+        else {
+        }
+    }
+</script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css" integrity="sha384-blOohCVdhjmtROpu8+CfTnUWham9nkX7P7OZQMst+RUnhtoY/9qemFAkIKOYxDI3" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" onload="handle404Error(this)" onerror="handle404Error(this, true)" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://vjs.zencdn.net/4.12/video-js.css">
+
+<link href="/bundles/brandStyles/acuitybrands?v=ilx0tbHK1m0sCWjJD1LeBf05A11iSD-7U-l007jTQSs1" rel="stylesheet"/>
+
+
+
+    <script src="/bundles/startupScripts?v=1UHA9jcK6V7llGlZ23ZsMPctBiQKYjSgor2zRe5Q9xo1"></script>
+
+    
+
+
+
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    window.addEventListener('load', function () {
+        //Utility navigation
+        $(".info-bar a").click(function (e) {
+            window.dataLayer.push({
+                'event': 'utility_nav',
+                'data': {
+                    'utilityNavData': {
+                        'navSelection': $(e.target).text()
+                    }
+                }
+            });
+        });
+
+        //Header navigation
+        function headerNavInteract(e) {
+            var linkItem = $(e.target);
+            var subNav = linkItem.parents("ul.header__main__sub-nav");
+            var tertiaryNav = linkItem.parents("ul.header__main__tertiary-nav");
+
+            var level1Text = subNav.length ? subNav.prev().text().trim()
+                : tertiaryNav.length ? tertiaryNav.prev().text().trim()
+                    : linkItem.text().trim();
+            var level2Text = tertiaryNav.length ? tertiaryNav.prev().text().trim()
+                : subNav.length ? linkItem.text().trim()
+                    : '';
+            var level3Text = tertiaryNav.length ? linkItem.text().trim()
+                : '';
+
+            headerNavData = {};
+            if (level1Text)
+                headerNavData['level1Nav'] = level1Text;
+            if (level2Text)
+                headerNavData['level1Nav2'] = level2Text;
+            if (level3Text)
+                headerNavData['level1Nav3'] = level3Text;
+
+            window.dataLayer.push({
+                'event': 'header_nav',
+                'data': {
+                    'headerNavData': headerNavData
+                }
+            });
+        }
+        $(".header__main nav>ul.unlisted a[href]").click(headerNavInteract);
+        $(".header__main nav>ul.unlisted a[href] span").click(headerNavInteract);
+
+
+    });
+</script>
+
+
+<script>
+    //How to buy "Find Location or Agent" event
+    var app = app || {};
+    app.sqlmaps = app.sqlmaps || {};
+    window.dataLayer = window.dataLayer || [];
+
+    var addLocationDataLayer = function (filterBubbleSelection, locationIdentifier, locationValue) {
+        var isFromProduct = false;
+        var locData = {};
+        if (isFromProduct) {
+            locData = {
+                'productName': '',
+                'productId': '',
+            }
+        }
+
+        if (filterBubbleSelection)
+            locData["filterBubbleSelection"] = filterBubbleSelection;
+        if (locationIdentifier)
+            locData["locationIdentifier"] = locationIdentifier;
+        if (locationValue)
+            locData["locationValue"] = locationValue;
+
+        window.dataLayer.push({
+            'event': 'find_location_or_agent',
+            'data': {
+                'locationData': locData
+            }
+        });
+    }
+
+    window.addEventListener('load', function () {
+        var processHowToBuyEvent = function () {
+            var filterBubbleSelection = '';
+            var locationIdentifier = '';
+            var locationValue = '';
+
+            locationValue = $(".how-to-buy-2__search div.form-group:visible input").val();
+            var selectVal = $(".how-to-buy-2__search div.form-group:visible select").val();
+            if (selectVal)
+                locationValue += ", " + selectVal;
+
+            locationIdentifier = $(".how-to-buy-2__search #dropdown-search-type button#dropdownSearchTypeButton").text().trim();
+            if (locationIdentifier === "Search By")
+                locationIdentifier = "";
+
+            filterBubbleSelection = $(".how-to-buy-2__filters .radiobtn label input[type='radio']:checked").parent().text().trim();
+
+            addLocationDataLayer(filterBubbleSelection, locationIdentifier, locationValue);
+        }
+
+        if ($("#how-to-buy-container").length) {
+            $(".how-to-buy-2__search #map-search-button").click(() => processHowToBuyEvent());
+            $('.how-to-buy-2__search .form-control').bind("enterKey", () => processHowToBuyEvent());
+        }
+    });
+</script>
+
+<!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KV9GH9');</script><!-- End Google Tag Manager -->    <!-- headtag placeholder -->
+    
+</head>
+<body ng-app="acuityApp">
+    <input type="hidden" id="currentLanguage" value="en" />
+
+    <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV9GH9"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->        <script>
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+            'ItemId': '{C297380B-8E7A-4C06-BAC9-FD0DAE9C8EAF}',
+                'Culture': 'en',
+                'ItemVersion': '3',
+                'ItemName': '404'
+            });
+        </script>
+    
+
+    
+
+
+    <script>
+        var app = app || {};
+        app.cookieLifetime = 0;
+    </script>
+    <div id="cookie-disclosure" class="cookie-disclosure-footer">
+        <div id="consent_blackbar"></div>
+<script>
+         const currentPageUrl = window.location.href;
+        // Ignore luminis.com AND nightingalelighting.com nightingalelighting-cm
+       const ignoreConsent = currentPageUrl.includes("luminis.com") || currentPageUrl.includes("luminis-cm") || currentPageUrl.includes("nightingalelighting.com") || currentPageUrl.includes("nightingalelighting-cm");
+        //applyConsent() code from Ceros documentation
+        function applyConsent(hasConsent) {
+          if(ignoreConsent) return null;
+          var foundExperienceInterval = setInterval(function() {
+            var cerosFrames = document.querySelectorAll("iframe.ceros-experience");
+            var cerosContainer = cerosFrames[0].parentNode;
+            var expId = cerosContainer.getAttribute("id");
+            if (expId) {
+              clearInterval(foundExperienceInterval);
+              // find experience
+              CerosSDK.findExperience(expId)
+                .done(function(experience) {
+                  experience.setUserConsentForAnalytics(hasConsent);
+                })
+                .fail(function(error) {
+                  console.error(error);
+                });
+            }
+          }, 500);
+        }
+       
+        // Add event listener for TrustArc consent preference changes
+        window.addEventListener("message", (event) => {
+            let eventDataJson = null;
+ 
+            try {
+                eventDataJson = JSON.parse(event.data);
+            } catch {
+                // If parsing fails, it's not a TrustArc event
+                // TrustArc always sends JSON-encoded data
+            }
+ 
+            // Check if the event is from TrustArc preference manager
+            if (eventDataJson && eventDataJson.source === "preference_manager") {
+                // Check if the event indicates preferences were submitted
+                if (eventDataJson.message === "submit_preferences") {
+                    // Reload the page to apply new preferences
+                    window.location.reload();
+                }
+            }
+        }, false);
+ 
+        // Function to check if TrustArc is fully loaded
+        function isTrustArcLoaded() {
+            // Check if all required TrustArc objects and properties exist
+            return typeof truste !== 'undefined' &&
+                   truste.eu &&
+                   truste.eu.bindMap &&
+                   truste.eu.bindMap.behaviorManager &&
+                   truste.cma;
+        }
+ 
+        // Function to wait for TrustArc to load with timeout
+        function waitForTrustArc(callback, interval = 100, timeout = 5000) {
+            // Track elapsed time
+            let elapsedTime = 0;
+            
+            // Set up interval to check TrustArc loading status
+            const checkInterval = setInterval(function() {
+                // Check if TrustArc is loaded
+                if (isTrustArcLoaded()) {
+                    // Clear the interval as we don't need to check anymore
+                    clearInterval(checkInterval);
+                    console.log('TrustArc has fully loaded');
+                    
+                    // Execute the callback if one was provided
+                    if (typeof callback === 'function') {
+                        try {
+                            callback();
+                        } catch (error) {
+                            // Log any errors that occur during callback execution
+                            console.error('Error executing TrustArc callback:', error);
+                        }
+                    }
+                } else {
+                    // Increment elapsed time
+                    elapsedTime += interval;
+                    
+                    // Check if we've exceeded the timeout
+                    if (elapsedTime >= timeout) {
+                        // Clear the interval and log a warning
+                        clearInterval(checkInterval);
+                        console.warn('Timeout: TrustArc did not load within expected time (5 seconds)');
+                    }
+                }
+            }, interval);
+        }
+ 
+        // Function to check consent status and apply it
+        function checkConsent() {
+            try {
+                // Initialize consent status as false
+                let hasConsent = false;
+                // Get consent decision from TrustArc
+                const response = truste.cma.callApi("getGDPRConsentDecision", "kkw4tu");
+ 
+                // Check consent based on response source
+                if (response.source === "asserted") {
+                    // For asserted consent, check if consentDecision includes value 2
+                    hasConsent = response.consentDecision.includes(2);
+                }
+ 
+                // Log the consent status
+                console.log("Applying consent", hasConsent);
+                // Apply the consent status to the Ceros experience
+                applyConsent(hasConsent);
+            } catch (error) {
+                // Log any errors that occur during consent checking
+                console.error('Error checking consent:', error);
+            }
+        }
+ 
+        if(!ignoreConsent) {
+           // Wait for TrustArc to load and then initialize consent checking
+           waitForTrustArc(function() {
+            checkConsent();
+        });
+        }
+ 
+        // Run it once to kick off the SDK loading; we are going to comment this out as it call it elsewhere now
+        //applyConsent(false);
+       </script>
+    </div>
+
+<div class="content-area">
+    <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10089/css/CoveoFullSearch.css" />
+<link rel="stylesheet" href="https://static.cloud.coveo.com/coveoforsitecore/ui/v0.55.8/css/CoveoForSitecore.css" />
+<script class="coveo-script" type="text/javascript" src='https://static.cloud.coveo.com/searchui/v2.10089/js/CoveoJsSearch.Lazy.min.js'></script>
+<script class="coveo-for-sitecore-script" type="text/javascript" src='https://static.cloud.coveo.com/coveoforsitecore/ui/v0.55.8/js/CoveoForSitecore.Lazy.min.js'></script>
+<script type="text/javascript" src="https://static.cloud.coveo.com/searchui/v2.10089/js/cultures/en.js"></script>
+
+<div>
+
+
+    
+    
+    <!-- Resources -->
+    <div id="coveo3a949f41"
+         class="CoveoForSitecoreContext"
+                    data-sc-should-have-analytics-component='true'
+            data-sc-analytics-enabled='true'
+            data-sc-current-language='en'
+            data-prebind-sc-language-field-name='fieldTranslator'
+            data-sc-language-field-name='_language'
+            data-sc-labels='{&quot;Template&quot; : &quot;Template&quot; , &quot;Uniform resource identifier&quot; : &quot;URI&quot; , &quot;Created&quot; : &quot;Created&quot; , &quot;Updated By&quot; : &quot;Updated by&quot; , &quot;Language&quot; : &quot;Language&quot; , &quot;Last Time Modified&quot; : &quot;Last time modified.&quot; , &quot;Created By&quot; : &quot;Created by&quot; , &quot;Creation Time&quot; : &quot;Creation time.&quot; , &quot;Search is currently unavailable&quot; : &quot;Oops! Something went wrong on the server.&quot; , &quot;If the problem persists contact the administrator.&quot; : &quot;If the problem persists contact the administrator.&quot; , &quot;Ascending&quot; : &quot;Ascending&quot; , &quot;Descending&quot; : &quot;Descending&quot;}'
+            data-sc-maximum-age='900000'
+            data-sc-page-name='*'
+            data-sc-page-name-full-path='/sitecore/content/AcuityBrands/Products/Detail/*'
+            data-sc-index-source-name='Coveo_web_index - abltech'
+            data-sc-is-in-experience-editor='false'
+            data-sc-is-user-anonymous='true'
+            data-sc-item-uri='sitecore://web/{8D453933-6D75-4973-B913-72C0E6B38912}?lang=en&amp;ver=17'
+            data-sc-item-id='8d453933-6d75-4973-b913-72c0e6b38912'
+            data-prebind-sc-latest-version-field-name='fieldTranslator'
+            data-sc-latest-version-field-name='_latestversion'
+            data-sc-rest-endpoint-uri='/coveo/rest'
+            data-sc-analytics-endpoint-uri='/coveo/rest/ua'
+            data-sc-site-name='AcuityBrands'
+            data-sc-field-prefix='f'
+            data-sc-field-suffix='26781'
+            data-sc-prefer-source-specific-fields='false'
+            data-sc-external-fields='[{&quot;fieldName&quot;:&quot;permanentid&quot;,&quot;shouldEscape&quot;:false}]'
+            data-sc-source-specific-fields='[{&quot;fieldName&quot;:&quot;attachmentparentid&quot;},{&quot;fieldName&quot;:&quot;author&quot;},{&quot;fieldName&quot;:&quot;clickableuri&quot;},{&quot;fieldName&quot;:&quot;collection&quot;},{&quot;fieldName&quot;:&quot;concepts&quot;},{&quot;fieldName&quot;:&quot;date&quot;},{&quot;fieldName&quot;:&quot;filetype&quot;},{&quot;fieldName&quot;:&quot;indexeddate&quot;},{&quot;fieldName&quot;:&quot;isattachment&quot;},{&quot;fieldName&quot;:&quot;language&quot;},{&quot;fieldName&quot;:&quot;printableuri&quot;},{&quot;fieldName&quot;:&quot;rowid&quot;},{&quot;fieldName&quot;:&quot;size&quot;},{&quot;fieldName&quot;:&quot;source&quot;},{&quot;fieldName&quot;:&quot;title&quot;},{&quot;fieldName&quot;:&quot;topparent&quot;},{&quot;fieldName&quot;:&quot;topparentid&quot;},{&quot;fieldName&quot;:&quot;transactionid&quot;},{&quot;fieldName&quot;:&quot;uri&quot;},{&quot;fieldName&quot;:&quot;urihash&quot;}]'
+>
+    </div>
+    <script type="text/javascript">
+        var endpointConfiguration = {
+            itemUri: "sitecore://web/{8D453933-6D75-4973-B913-72C0E6B38912}?lang=en&amp;ver=17",
+            siteName: "AcuityBrands",
+            restEndpointUri: "/coveo/rest"
+        };
+        if (typeof (CoveoForSitecore) !== "undefined") {
+            CoveoForSitecore.SearchEndpoint.configureSitecoreEndpoint(endpointConfiguration);
+            CoveoForSitecore.version = "5.0.1039.1";
+            var context = document.getElementById("coveo3a949f41");
+            if (!!context) {
+                CoveoForSitecore.Context.configureContext(context);
+            }
+        }
+    </script>
+</div>
+
+    <div class="" >
+        
+
+<div class="hamburger">
+    <button type="button" class="tcon tcon-menu--xcross" aria-label="toggle menu">
+        <span class="tcon-menu__lines" aria-hidden="true"></span>
+        <span class="tcon-visuallyhidden">toggle menu</span>
+    </button>
+</div>
+
+<svg class="mobile-search-trigger" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" viewBox="0 0 16 16" xml:space="preserve"><g><path fill="#68737a" d="M6.6 0C3 0 0 3 0 6.6c0 3.7 3 6.6 6.6 6.6 1.5 0 2.8-0.5 3.9-1.3l3.7 3.7c0.2 0.2 0.4 0.3 0.7 0.3s0.5-0.1 0.7-0.3c0.4-0.4 0.4-1 0-1.4L12 10.6c0.8-1.1 1.3-2.5 1.3-3.9C13.3 3 10.3 0 6.6 0L6.6 0zM6.6 11.6c-2.7 0-5-2.2-5-5 0-2.7 2.2-5 5-5 2.7 0 5 2.2 5 5C11.6 9.4 9.4 11.6 6.6 11.6L6.6 11.6z" /></g></svg>
+
+<div class="shade"></div>
+
+<div >
+
+
+    <header  data-pageId="{8D453933-6D75-4973-B913-72C0E6B38912}">
+
+        
+            <div class="info-bar">
+                <div class="container-fluid h-100">
+                    <div class="row h-100">
+                        <div class="col-3">
+                            
+                            
+
+    <div class="info-bar__ticker" style="padding-top:9px;">
+        
+    </div>
+
+
+                        </div>
+                        <div class="col-9">
+                            <ul class="info-bar__links unlisted inline text-right">
+        <li class="info-bar__links__mobile-hide">
+            <a href="/support/how-to-buy" class="" >How to Buy</a>
+        </li>
+        <li class="info-bar__links__mobile-hide">
+            <a href="https://www.acuityinc.com/resources/our-newsroom" class="" target="_blank" aria-label="Navigate to external site" >Our Newsroom</a>
+        </li>
+        <li class="info-bar__links__mobile-hide">
+            <a href="https://www.acuityinc.com/careers" class="" target="_blank" aria-label="Navigate to external site" >Join Our Team</a>
+        </li>
+        <li class="info-bar__links__with-dropdown info-bar__links__mobile-hide">
+<a href="/login" class="login-link" >Login</a>
+            <div class="info-bar__links__dropdown">
+                <ul class="unlisted">
+        <li >
+<a href="/login" class="" >                        <i class="fa fa-sign-in-alt" role="presentation"></i>
+Login/Register</a>
+        </li>
+                </ul>
+            </div>
+        </li>
+            <li class="info-bar__links__with-dropdown info-bar__links__mobile-hide">
+<a></a>
+                    <u style="text-decoration:none">United States - English</u>
+                    <i class="fa-solid fa-caret-down" style="color: #fafafa;"></i>
+
+                <div class="info-bar__links__dropdown">
+                    <ul class="unlisted">
+                                <li>
+                                    <a href="/en/products/detail/655947/juno/ufl-undercabinet/ufl-economy-fluorescent-undercabinet-discontinued">United States - English</a>
+                                </li>
+                                <li>
+                                    <a href="/fr-ca/products/detail/655947/juno/ufl-undercabinet/ufl-economy-fluorescent-undercabinet-discontinued">Canada - Francais</a>
+                                </li>
+
+                    </ul>
+                </div>
+            </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header__main">
+                <div class="header__main__shade"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-auto">
+                            <a class="header__main__logo" href="/"><img src="/-/media/abl/acuitybrands/images/home/new-acuity-brands-logo-green-220x70.png?h=70&amp;w=220&amp;la=en&amp;hash=3AA54071025D0D22CB8DDE5AF22D2F14" alt="site logo" /></a>
+                        </div>
+                        <div class="col header__main__nav-wrapper">
+                            <nav>
+                                <div class="info-bar info-bar__height info-bar--nav">
+                                    <ul class="info-bar__links__mobile unlisted inline text-right">
+                                    </ul>
+                                </div>
+                                <ul class="unlisted">
+        <li class="  has-sub-nav">
+            <a class="has-sub-nav__mobile-trigger"><span>Who We Are</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/who-we-are" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Who We Are</span>
+</a>            <ul class="header__main__sub-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/who-we-are" class="" >Who We Are</a>                </li>
+        <li class="first-with-sub-nav">
+<a href="/who-we-are/our-brands" class="" >Our Brands</a>        </li>
+        <li class="">
+<a href="https://www.acuityinc.com/resources/our-newsroom" class="" target="_blank" >Our Newsroom</a>        </li>
+        <li class="">
+<a href="https://www.acuityinc.com" class="" target="_blank" >Our Parent Company</a>        </li>
+            </ul>
+        </li>
+        <li class="  has-sub-nav">
+            <a class="has-sub-nav__mobile-trigger"><span>Products</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/products" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Products</span>
+</a>            <ul class="header__main__sub-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/products" class="" >Products</a>                </li>
+        <li class="has-tertiary-nav first-with-sub-nav">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Indoor</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/products/indoor" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Indoor</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/products/indoor" class="" >Indoor</a>                </li>
+    <li >
+<a href="/products/indoor/architectural" class="" >Architectural</a>    </li>
+    <li >
+<a href="/products/indoor/decorative" class="" >Decorative</a>    </li>
+    <li >
+<a href="/products/indoor/downlights-cylinders" class="" >Downlights / Cylinders</a>    </li>
+    <li >
+<a href="/products/indoor/linear" class="" >Linear</a>    </li>
+    <li >
+<a href="/products/indoor/commercial-modular-wiring" class="" >Modular Wiring</a>    </li>
+    <li >
+<a href="/products/indoor/multiples" class="" >Multiples</a>    </li>
+    <li >
+<a href="/products/indoor/panels" class="" >Panels</a>    </li>
+    <li >
+<a href="/products/indoor/shop-lights" class="" >Shop Lights</a>    </li>
+    <li >
+<a href="/products/indoor/commercial-strip-lights" class="" >Strip Lights</a>    </li>
+    <li >
+<a href="/products/indoor/commercial-track-fixtures" class="" >Track Fixtures</a>    </li>
+    <li >
+<a href="/products/indoor/commercial-track-systems" class="" >Track Systems</a>    </li>
+    <li >
+<a href="/products/indoor/troffers" class="" >Troffers</a>    </li>
+    <li >
+<a href="/products/indoor/wall-brackets" class="" >Wall Brackets</a>    </li>
+    <li >
+<a href="/products/indoor/wraps" class="" >Wraps</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Residential</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/products/residential" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Residential</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/products/residential" class="" >Residential</a>                </li>
+    <li >
+<a href="/products/residential/decorative-linear" class="" >Decorative Linear</a>    </li>
+    <li >
+<a href="/products/downlights" class="" >Downlights</a>    </li>
+    <li >
+<a href="/products/residential/flush-surface-mounts" class="" >Flush/Surface Mounts</a>    </li>
+    <li >
+<a href="/products/residential/linear-accent" class="" >Linear Accent</a>    </li>
+    <li >
+<a href="/products/residential/pendants-semi-flush" class="" >Pendants/Semi-Flush</a>    </li>
+    <li >
+<a href="/products/residential/sconces" class="" >Sconces</a>    </li>
+    <li >
+<a href="/products/downlights/smart-downlights" class="" >Smart Home</a>    </li>
+    <li >
+<a href="/products/residential/residential-step-lights" class="" >Step Lights</a>    </li>
+    <li >
+<a href="/products/residential/residential-track-fixtures" class="" >Track Fixtures</a>    </li>
+    <li >
+<a href="/products/residential/residential-track-systems" class="" >Track Systems</a>    </li>
+    <li >
+<a href="/products/residential/undercabinet-task" class="" >Undercabinet/Task</a>    </li>
+    <li >
+<a href="/products/residential/utility-closet" class="" >Utility/Closet</a>    </li>
+    <li >
+<a href="/products/residential/vanity" class="" >Vanity</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Industrial</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/products/industrial" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Industrial</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/products/industrial" class="" >Industrial</a>                </li>
+    <li >
+<a href="/products/industrial/linear-high-bays" class="" >Linear High Bays</a>    </li>
+    <li >
+<a href="/products/industrial/low-bays" class="" >Low Bays</a>    </li>
+    <li >
+<a href="/products/industrial/industrial-modular-wiring" class="" >Modular Wiring</a>    </li>
+    <li >
+<a href="/products/industrial/round-high-bays" class="" >Round High Bays</a>    </li>
+    <li >
+<a href="/products/industrial/special-applications" class="" >Special Applications</a>    </li>
+    <li >
+<a href="/products/industrial/industrial-strip-lights" class="" >Strip Lights</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Outdoor</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/products/outdoor" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Outdoor</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/products/outdoor" class="" >Outdoor</a>                </li>
+    <li >
+<a href="/products/outdoor/area-site" class="" >Area &amp; Site</a>    </li>
+    <li >
+<a href="/products/outdoor/bollards" class="" >Bollards</a>    </li>
+    <li >
+<a href="/products/outdoor/building-mount" class="" >Building Mount</a>    </li>
+    <li >
+<a href="/products/outdoor/floodlighting-landscape" class="" >Floodlighting &amp; Landscape</a>    </li>
+    <li >
+<a href="/products/outdoor/garage-canopy" class="" >Garage &amp; Canopy</a>    </li>
+    <li >
+<a href="/products/outdoor/ingrade" class="" >Ingrade</a>    </li>
+    <li >
+<a href="/products/outdoor/period-lighting" class="" >Period Lighting</a>    </li>
+    <li >
+<a href="/products/outdoor/commercial-lighting-poles-arms" class="" >Poles and Arms</a>    </li>
+    <li >
+<a href="/products/outdoor/roadway" class="" >Roadway</a>    </li>
+    <li >
+<a href="/products/outdoor/sports-lighting" class="" >Sports Lighting</a>    </li>
+    <li >
+<a href="/products/outdoor/outdoor-step-lights" class="" >Step Lights</a>    </li>
+    <li >
+<a href="/products/outdoor/underwater" class="" >Underwater</a>    </li>
+            </ul>
+        </li>
+        <li class="">
+<a href="/resources/programs/contractor-select" class="" >Contractor Select</a>        </li>
+        <li class="">
+<a href="/resources/programs/design-select" class="" >Design Select</a>        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Confinement / Vandal</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/products/confinement-vandal" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Confinement / Vandal</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/products/confinement-vandal" class="" >Confinement / Vandal</a>                </li>
+    <li >
+<a href="/products/confinement-vandal/confinement" class="" >Confinement</a>    </li>
+    <li >
+<a href="/products/confinement-vandal/downlight-housing" class="" >Downlight / Housing </a>    </li>
+    <li >
+<a href="/products/confinement-vandal/emergency-exit-sign" class="" >Emergency Exit Sign</a>    </li>
+    <li >
+<a href="/products/detail/2142243/luminaire-led/vrp-vandal-resistant-panel/vrp-features-ik10-followed-by-ip66-rating-and-ligature-resistant-design-for-behavioral-health-and-vandal-prone-environments" class="" >Flat Panel</a>    </li>
+    <li >
+<a href="/products/confinement-vandal/floodlight" class="" >Floodlight</a>    </li>
+    <li >
+<a href="/products/confinement-vandal/linear" class="" >Linear</a>    </li>
+    <li >
+<a href="/products/confinement-vandal/sconce" class="" >Sconce</a>    </li>
+    <li >
+<a href="/products/confinement-vandal/surface-light" class="" >Surface Light</a>    </li>
+    <li >
+<a href="/products/confinement-vandal/troffer" class="" >Troffer</a>    </li>
+    <li >
+<a href="/products/confinement-vandal/wallpack" class="" >Wallpack</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Life Safety</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/products/life-safety" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Life Safety</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/products/life-safety" class="" >Life Safety</a>                </li>
+    <li >
+<a href="/products/life-safety/canadian-life-safety-products" class="" >Canadian Life Safety Products</a>    </li>
+    <li >
+<a href="/products/life-safety/emergency-ac-inverters" class="" >Emergency AC Inverters</a>    </li>
+    <li >
+<a href="/products/life-safety/emergency-ballasts-drivers" class="" >Emergency Ballasts &amp; Drivers</a>    </li>
+    <li >
+<a href="/products/life-safety/emergency-control-devices" class="" >Emergency Control Devices</a>    </li>
+    <li >
+<a href="/products/life-safety/emergency-lighting-units-remotes" class="" >Emergency Lighting Units &amp; Remotes</a>    </li>
+    <li >
+<a href="/products/life-safety/exit-signs-combos" class="" >Exit Signs &amp; Combos</a>    </li>
+    <li >
+<a href="/products/family/star-emergency-lighting-testing" class="" >STAR Emergency Lighting Testing</a>    </li>
+    <li >
+<a href="/products/family/lithonia-life-safety" class="" >Lithonia Lighting&#174; Life Safety Solutions</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Lighting Controls</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/products/controls" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Lighting Controls</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/products/controls" class="" >Lighting Controls</a>                </li>
+    <li >
+<a href="/products/controls/accessories" class="" >Accessories</a>    </li>
+    <li >
+<a href="/products/controls/controllers" class="" >Controllers</a>    </li>
+    <li >
+<a href="/products/controls/daylight-sensors" class="" >Daylight Sensors</a>    </li>
+    <li >
+<a href="/products/controls/embedded-controls" class="" >Embedded Controls</a>    </li>
+    <li >
+<a href="/products/controls/load-controllers" class="" >Load Controllers</a>    </li>
+    <li >
+<a href="/products/luminaires-with-embedded-controls" class="" >Luminaires with Embedded Controls</a>    </li>
+    <li >
+<a href="/products/controls/occupancy-sensors" class="" >Occupancy Sensors</a>    </li>
+    <li >
+<a href="/products/controls/outdoor-photocontrols-and-sensors" class="" >Outdoor Photocontrols and Sensors</a>    </li>
+    <li >
+<a href="/products/controls/panels" class="" >Panels</a>    </li>
+    <li >
+<a href="/support/technical-support/lighting-controls-services" class="" title="Services" >Services</a>    </li>
+    <li >
+<a href="/products/controls/software-and-mobile-apps" class="" >Software and Mobile Apps</a>    </li>
+    <li >
+<a href="/products/controls/wall-stations-and-switches" class="" >Wall Stations and Switches</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Drivers and Components</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/products/drivers-and-components" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Drivers and Components</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/products/drivers-and-components" class="" >Drivers and Components</a>                </li>
+    <li >
+<a href="/products/family/eldoled-fieldset-programmable-led-drivers" class="" target="_blank" >FieldSET Programmable LED Drivers</a>    </li>
+    <li >
+<a href="/who-we-are/acuity-brands-lighting/quicktronic-ballasts" class="" target="_blank" >Electronic Ballasts</a>    </li>
+    <li >
+<a href="https://www.iotaengineering.com/" class="" target="_blank" >Inverters &amp; Emergency Drivers</a>    </li>
+    <li >
+<a href="https://www.eldoled.com/" class="" target="_blank" >LED Drivers</a>    </li>
+    <li >
+<a href="https://www.whiteoptics.com/" class="" target="_blank" >Lenses &amp; Optical Films</a>    </li>
+    <li >
+<a href="/oem" class="" >OEM Solutions</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>DMX Networking &amp; Controls</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/products/dmx-networking-controls" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>DMX Networking &amp; Controls</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/products/dmx-networking-controls" class="" >DMX Networking &amp; Controls</a>                </li>
+    <li >
+<a href="/products/dmx-networking-controls/accessories" class="" >Accessories</a>    </li>
+    <li >
+<a href="/products/dmx-networking-controls/controls-and-consoles" class="" >Controls and Consoles</a>    </li>
+    <li >
+<a href="/products/dmx-networking-controls/data-receptacles" class="" >Data Receptacles</a>    </li>
+    <li >
+<a href="/products/dmx-networking-controls/ethernet-switches" class="" >Ethernet Switches</a>    </li>
+    <li >
+<a href="/products/dmx-networking-controls/gateways-dmx-rdm" class="" >Gateways DMX RDM</a>    </li>
+    <li >
+<a href="/products/dmx-networking-controls/interfaces-dmx" class="" >Interfaces DMX</a>    </li>
+    <li >
+<a href="/products/dmx-networking-controls/panels" class="" >Panels</a>    </li>
+    <li >
+<a href="https://pathway.acuitybrands.com/products/pathscape-dmx-software" class="" >Pathscape Software</a>    </li>
+    <li >
+<a href="/products/detail/1602941/pathway/pwelink-lighting-protocol-router/elink-network-protocol-converter-router" class="" >Protocol Converter Router</a>    </li>
+    <li >
+<a href="/products/dmx-networking-controls/splitters-dmx-rdm" class="" >Splitters DMX RDM</a>    </li>
+            </ul>
+        </li>
+        <li class="">
+<a href="/resources/markets/healthcare/care-collection" class="" >Care Collection</a>        </li>
+        <li class="">
+<a href="/verjure-horticulture-lighting" class="" >Horticulture Lighting</a>        </li>
+            </ul>
+        </li>
+        <li class="  has-sub-nav">
+            <a class="has-sub-nav__mobile-trigger"><span>Resources</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/resources" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Resources</span>
+</a>            <ul class="header__main__sub-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/resources" class="" >Resources</a>                </li>
+        <li class="has-tertiary-nav first-with-sub-nav">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Markets</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/resources/markets" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Markets</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/resources/markets" class="" >Markets</a>                </li>
+    <li >
+<a href="/resources/markets/data-centers" class="" >Data Centers</a>    </li>
+    <li >
+<a href="/resources/markets/healthcare" class="" >Healthcare</a>    </li>
+    <li >
+<a href="/verjure-horticulture-lighting" class="" >Horticulture</a>    </li>
+    <li >
+<a href="/resources/markets/public-infrastructure-and-iija" class="" >Infrastructure</a>    </li>
+    <li >
+<a href="/resources/markets/gas-station-lights-and-convenience-store-lighting" class="" >Refueling</a>    </li>
+    <li >
+<a href="https://www.acuitybrands.com/resources/markets#allmarkets" class="" >All Markets</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Programs</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/resources/programs" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Programs</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/resources/programs" class="" >Programs</a>                </li>
+    <li >
+<a href="/resources/programs/contractor-select" class="" >Contractor Select</a>    </li>
+    <li >
+<a href="/resources/programs/design-select" class="" >Design Select</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Customer Tools</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/resources/customer-tools" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Customer Tools</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/resources/customer-tools" class="" >Customer Tools</a>                </li>
+    <li >
+<a href="/resources/customer-tools/ar" class="" >Acuity Brands AR App</a>    </li>
+    <li >
+<a href="/resources/customer-tools/connected-distributor-tools" class="" >Connected Distributor</a>    </li>
+    <li >
+<a href="/resources/customer-tools/contractor-resources" class="" >Contractor Resources</a>    </li>
+    <li >
+<a href="/resources/customer-tools/customer-financial-assistance" class="" >Customer Financial Assistance</a>    </li>
+    <li >
+<a href="/resources/customer-tools/electrical-distributors" class="" >Distributor Advantage</a>    </li>
+    <li >
+<a href="/resources/customer-tools/retrofit-and-renovation/energy-efficient-products" class="" >Energy Efficient Lookup</a>    </li>
+    <li >
+<a href="/resources/customer-tools/life-safety-resources" class="" >Life Safety Resource Center</a>    </li>
+    <li >
+<a href="/resources/customer-tools/lighting-design-resources" class="" >Lighting Design Resources</a>    </li>
+    <li >
+<a href="/resources/customer-tools/literature-library" class="" >Literature Library</a>    </li>
+    <li >
+<a href="/resources/customer-tools/national-accounts" class="" >National Accounts</a>    </li>
+    <li >
+<a href="/resources/customer-tools/paint-colors" class="" >Paint Colors</a>    </li>
+    <li >
+<a href="/resources/customer-tools/retrofit-and-renovation" class="" >Retrofit Solutions</a>    </li>
+    <li >
+<a href="/resources/customer-tools/supplier-resources" class="" >Supplier Resources</a>    </li>
+            </ul>
+        </li>
+        <li class="">
+<a href="https://www.acuityinc.com/earthlight-report-2024" class="" target="_blank" >EarthLIGHT Report 2024</a>        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Featured Technologies</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/resources/featured-technologies" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Featured Technologies</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/resources/featured-technologies" class="" >Featured Technologies</a>                </li>
+    <li >
+<a href="/resources/featured-technologies/cellconnect" class="" >Cell Connect</a>    </li>
+    <li >
+<a href="/resources/featured-technologies/dc2dc" class="" >DC2DC Architecture</a>    </li>
+    <li >
+<a href="/products/controls/embedded-controls" class="" >Embedded Controls</a>    </li>
+    <li >
+<a href="/resources/featured-technologies/empowering-technologies" class="" >Empowering Technologies</a>    </li>
+    <li >
+<a href="/resources/featured-technologies/led-drivers" class="" >LED Drivers</a>    </li>
+    <li >
+<a href="/resources/featured-technologies/mainstream-dynamic" class="" >Mainstream Dynamic</a>    </li>
+    <li >
+<a href="/products/family/star-emergency-lighting-testing" class="" >STAR</a>    </li>
+    <li >
+<a href="/resources/featured-technologies/turtle-friendly-lighting" class="" >Turtle-Friendly Lighting</a>    </li>
+            </ul>
+        </li>
+        <li class="">
+<a href="/resources/inspiration-gallery" class="" >Inspiration Gallery</a>        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Education and Events</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/resources/education-and-events" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Education and Events</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/resources/education-and-events" class="" >Education and Events</a>                </li>
+    <li >
+<a href="/resources/education-and-events/training-and-education" class="" >Training &amp; Education</a>    </li>
+    <li >
+<a href="/resources/education-and-events/upcoming-events" class="" >Trade Shows &amp; Events</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Technical Resources</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/resources/technical-resources" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Technical Resources</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/resources/technical-resources" class="" >Technical Resources</a>                </li>
+    <li >
+<a href="/resources/technical-resources/bim-downloads" class="" >BIM Downloads by Brand</a>    </li>
+    <li >
+<a href="/resources/technical-resources/ies-downloads" class="" >IES Downloads by Brand</a>    </li>
+    <li >
+<a href="/resources/technical-resources/pole-resources" class="" >POLESCENTRAL</a>    </li>
+    <li >
+<a href="/resources/technical-resources/typicals" class="" >Typicals</a>    </li>
+            </ul>
+        </li>
+        <li class="has-tertiary-nav ">
+            <a class="has-tertiary-nav__mobile-trigger"><span>Trending Topics</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/resources/trending-topics" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Trending Topics</span>
+</a>            <ul class="header__main__tertiary-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/resources/trending-topics" class="" >Trending Topics</a>                </li>
+    <li >
+<a href="/resources/trending-topics/building-certification-programs" class="" >Building Certification Programs</a>    </li>
+    <li class="hide-in-ca">
+<a href="/resources/trending-topics/buy-american" class="" >BAA and BABA</a>    </li>
+    <li >
+<a href="/resources/trending-topics/california-compliance" class="" title="California Compliance" >California Energy Compliance</a>    </li>
+    <li >
+<a href="/resources/trending-topics/humanistic-lighting" class="" >Humanistic Lighting</a>    </li>
+    <li >
+<a href="/resources/markets/public-infrastructure-and-iija" class="" >Infrastructure Investment and Jobs Act</a>    </li>
+    <li >
+<a href="/resources/trending-topics/find-low-ugr-products" class="" >Low UGR</a>    </li>
+            </ul>
+        </li>
+        <li class="">
+<a href="https://insights.acuitybrands.com/" class="" target="_blank" >Insights Blog</a>        </li>
+            </ul>
+        </li>
+        <li class="  has-sub-nav">
+            <a class="has-sub-nav__mobile-trigger"><span>Support</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+<a href="/support" class="has-sub-nav__desktop-link" aria-expanded="false" aria-haspopup="true" >                <span>Support</span>
+</a>            <ul class="header__main__sub-nav unlisted">
+                <li class="back"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link">
+<a href="/support" class="" >Support</a>                </li>
+        <li class="first-with-sub-nav">
+<a href="/support/how-to-buy" class="" >How to Buy</a>        </li>
+        <li class="">
+<a href="/support/homeowners" class="" title="Homeowners" >Homeowners</a>        </li>
+        <li class="">
+<a href="/support/technical-support" class="" >Technical Support</a>        </li>
+        <li class="">
+<a href="/support/warranty" class="" >Warranty / Terms &amp; Conditions</a>        </li>
+        <li class="">
+<a href="/support/product-security-bulletins" class="" >Product Security Bulletins</a>        </li>
+        <li class="">
+<a href="/support/product-security-vulnerability-policy" class="" >Product Security Vulnerability Policy</a>        </li>
+        <li class="">
+<a href="/oem" class="" >Acuity Brands OEM Sales</a>        </li>
+            </ul>
+        </li>
+        <li class="last-on-desktop">
+<a href="/contact" class="" >                <span>Contact Us</span>
+</a>        </li>
+
+                                    
+        <li class="has-sub-nav has-sub-nav--hidden-desktop ">
+<a href="/support/how-to-buy" class="" >How to Buy</a>        </li>
+        <li class="has-sub-nav has-sub-nav--hidden-desktop ">
+<a href="https://www.acuityinc.com/resources/our-newsroom" class="" target="_blank" >Our Newsroom</a>        </li>
+        <li class="has-sub-nav has-sub-nav--hidden-desktop ">
+<a href="https://www.acuityinc.com/careers" class="" target="_blank" >Join Our Team</a>        </li>
+        <li class="has-sub-nav has-sub-nav--hidden-desktop ">
+                <a class="d-lg-none"><span>Login</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+            <a href="/login" class="has-sub-nav__desktop-link login-link" >                <span>Login</span>
+</a>            <ul class="header__main__sub-nav unlisted">
+                <li class="back d-lg-none"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                    <li class="section-link">
+<a href="/login" class="login-link" >Login</a>                    </li>
+                <li>
+<a href="/login" class="" >                                <i class="fa fa-sign-in-alt" role="presentation" style="display: none"></i>
+                                <span>
+                                    Login/Register
+                                </span>
+</a>                </li>
+            </ul>
+        </li>
+        <li class="has-sub-nav has-sub-nav--hidden-desktop ">
+            <a class="d-lg-none"><span>United States - English</span><i class="fas fa-chevron-right" role="presentation"></i></a>
+            <ul class="header__main__sub-nav unlisted">
+                <li class="back d-lg-none"><a><i class="fas fa-chevron-left" role="presentation"></i>Back</a></li>
+                <li class="section-link" style="text-transform: uppercase;">
+United States - English                </li>
+                <li>
+                        <a href="/en/products/detail/655947/juno/ufl-undercabinet/ufl-economy-fluorescent-undercabinet-discontinued">
+                            <i class="fa fa-cog" role="presentation" style="display: none"></i>
+                            <span>
+                                United States - English
+                            </span>
+                        </a>
+                        <a href="/fr-ca/products/detail/655947/juno/ufl-undercabinet/ufl-economy-fluorescent-undercabinet-discontinued">
+                            <i class="fa fa-cog" role="presentation" style="display: none"></i>
+                            <span>
+                                Canada - Francais
+                            </span>
+                        </a>
+                </li>
+            </ul>
+        </li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                            <div class="col header__main__search-bar">
+        <div class="search-bar form-group">
+            <img class="mobile-search-close" src="/Assets/img/close-modal-blue-grey.png" alt="Close Mobile Search Bar" />
+            <div class="form-group col-search">
+                <div class="ablCoveoSearchbox">
+                    <div class="ab-global-searchbox-container">
+    
+    
+
+        <div id="_4C7A652E-1CA1-4B0D-8C93-ABE0512B5797"
+               data-search-interface-id='coveo670bcc2f'
+>
+
+            <div class='coveo-search-section'>
+                
+
+
+
+<script>
+    document.addEventListener("CoveoSearchEndpointInitialized", function() {
+        var searchboxElement = document.getElementById("_185F67BF-1D73-4AEE-9564-FDE5B0EB24D9");
+        searchboxElement.addEventListener("CoveoComponentInitialized", function() {
+            CoveoForSitecore.initSearchboxIfStandalone(searchboxElement, "/search");
+        });
+    })
+</script><div id="_185F67BF-1D73-4AEE-9564-FDE5B0EB24D9_container"
+       data-prebind-maximum-age='currentMaximumAge'
+  data-pipeline='AcuityBrands-pipeline'
+>
+
+    <div id="_185F67BF-1D73-4AEE-9564-FDE5B0EB24D9"
+         class="CoveoSearchbox"
+           data-enable-omnibox='true'
+  data-prebind-maximum-age='currentMaximumAge'
+  data-pipeline='AcuityBrands-pipeline'
+  data-placeholder='Search'
+  data-clear-filters-on-new-query='false'
+>
+        
+        
+<script type="text/javascript">
+    document.addEventListener("CoveoSearchEndpointInitialized", function() {
+        var componentId = "_185F67BF-1D73-4AEE-9564-FDE5B0EB24D9";
+        var componentElement = document.getElementById(componentId);
+
+        function showError(error) {
+                console.error(error);
+        }
+
+        function areCoveoResourcesIncluded() {
+            return typeof (Coveo) !== "undefined";
+        }
+
+        if (areCoveoResourcesIncluded()) {
+            var event = document.createEvent("CustomEvent");
+            event.initEvent("CoveoComponentInitialized", false, true);
+            
+            setTimeout(function() {
+                componentElement.dispatchEvent(event);
+            }, 0);
+        } else {
+            componentElement.classList.add("invalid");
+            showError("The Coveo Resources component must be included in this page.");
+        }
+    });
+</script>
+        <div class="CoveoForSitecoreExpressions"></div>
+        <div class="CoveoForSitecoreConfigureSearchHub" data-sc-search-hub="Search"></div>
+    </div>
+
+
+
+    <div class="CoveoForSitecoreAnalytics"
+                    data-sc-analytics-custom-metadata='{&quot;hostpageid&quot; : &quot;{7161E863-D64E-4687-AD91-E78691520B43}&quot;}'
+            data-component-type='globalsearch'
+>
+    </div>
+<div>
+    
+
+        <div class="CoveoAnalytics"
+                            data-prebind-endpoint='coveoForSitecoreAnalyticsEndpoint'
+                data-prebind-anonymous='isAnonymous'
+                data-prebind-search-hub='currentPageName'
+                data-prebind-send-to-cloud='analyticsEnabled'
+                data-component-type='globalsearch'
+>
+        </div>
+</div>
+    <div>
+    
+    
+
+    <div class="CoveoForSitecoreLocalExpression"
+                    data-sc-filter-on-sitecore-context-database='true'
+            data-sc-filter-on-current-language='true'
+            data-sc-filter-on-latest-version='true'
+>
+    </div>
+</div>
+
+    <div>
+    
+    
+
+        <div class="CoveoForSitecoreFilterExpression"
+                                         data-sc-filter-scope-node='{&quot;advanced&quot; : {&quot;type&quot; : &quot;and&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;or&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;or&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;or&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;or&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;or&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;and&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;HasLayout&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;boolean&quot; , &quot;value&quot; : 0},&quot;fieldValues&quot; : [true]},&quot;right&quot; : {&quot;type&quot; : &quot;and&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;site&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;AcuityBrands&quot;]},&quot;right&quot; : {&quot;type&quot; : &quot;and&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;not&quot; , &quot;operand&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;site&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;AcuityBrandsToronto&quot;]}},&quot;right&quot; : {&quot;type&quot; : &quot;not&quot; , &quot;operand&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;site&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;AcuityBrandsMX&quot;]}}}}},&quot;right&quot; : {&quot;type&quot; : &quot;and&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;_template&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;68D7070A0D8248959EEA08DC14EFAC70&quot;]},&quot;right&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;excludefromsearchresults&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;0&quot;]}}},&quot;right&quot; : {&quot;type&quot; : &quot;and&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;_template&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;752A91FCE8F241ABB633697F2BE3164B&quot;]},&quot;right&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;excludefromsearchresults&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;0&quot;]}}},&quot;right&quot; : {&quot;type&quot; : &quot;and&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;_template&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;6114CAAF458F46CDAF316B631FE1EA7E&quot;]},&quot;right&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;excludefromsearchresults&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;0&quot;]}}},&quot;right&quot; : {&quot;type&quot; : &quot;and&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;_template&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;3D46F5D8090346E2AC1289EC3B705359&quot;]},&quot;right&quot; : {&quot;type&quot; : &quot;not&quot; , &quot;operand&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;excludefromsearchresults&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;0&quot;]}}}},&quot;right&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;_template&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;C5A64F6A9BD84F419EE8F775B297DFB0&quot;]}},&quot;right&quot; : {&quot;type&quot; : &quot;and&quot; , &quot;left&quot; : {&quot;type&quot; : &quot;not&quot; , &quot;operand&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;productbrandname&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;Distech Controls&quot;]}},&quot;right&quot; : {&quot;type&quot; : &quot;not&quot; , &quot;operand&quot; : {&quot;type&quot; : &quot;field&quot; , &quot;fieldName&quot; : &quot;productbrandname&quot; , &quot;operator&quot; : {&quot;name&quot; : &quot;==&quot; , &quot;value&quot; : 1},&quot;fieldValueType&quot; : {&quot;name&quot; : &quot;string&quot; , &quot;value&quot; : 3},&quot;fieldValues&quot; : [&quot;Atrius&quot;]}}}}}'
+>
+        </div>
+</div>
+
+</div>
+
+            </div>
+        </div>
+</div>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+
+            if (Coveo.$('#coveo670bcc2f').length > 0) {
+                var externalComponentsSection = document.getElementById("_4C7A652E-1CA1-4B0D-8C93-ABE0512B5797");
+                     CoveoForSitecore.initExternalComponentsSection(externalComponentsSection);
+            }
+        });
+    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+    </header>
+</div>
+
+<script>
+    if (app && app.setReturnUrl && app.setReturnUrl instanceof Function) {
+        app.setReturnUrl();
+    }
+</script>
+
+
+
+
+
+
+
+    </div>
+        <div class="scroll-to-top"><img src="/-/media/abl/shared-content/images/top-of-page-button/ab_top_icon_60x60.png" alt="Scroll To Top"></div>
+
+
+    
+    <div class="compare-list">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="compare-list__wrapper">
+                        <ul class="compare-list__products unlisted inline">
+                                <li>
+                                    <div class="remove-compare"><img src="/Assets/img/compare-remove.png" alt="Remove Compare"></div>
+                                    <a class="compare-link"></a>
+                                </li>
+                                <li>
+                                    <div class="remove-compare"><img src="/Assets/img/compare-remove.png" alt="Remove Compare"></div>
+                                    <a class="compare-link"></a>
+                                </li>
+                                <li>
+                                    <div class="remove-compare"><img src="/Assets/img/compare-remove.png" alt="Remove Compare"></div>
+                                    <a class="compare-link"></a>
+                                </li>
+                                <li>
+                                    <div class="remove-compare"><img src="/Assets/img/compare-remove.png" alt="Remove Compare"></div>
+                                    <a class="compare-link"></a>
+                                </li>
+                        </ul>
+                        <button class="btn btn-blue">Compare</button>
+                        <a href="" class="clear-all-compare">Clear All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div role="main" >
+        <section class="page-intro">
+    <div class="container-fluid">
+        <div class="row">
+            <nav aria-label="Breadcrumb" class="col-12">
+                <ul class="page-intro__breadcrumbs unlisted inline" style="max-width: 60%;" itemscope itemtype="https://schema.org/BreadcrumbList">
+                            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                                <a href="/" itemprop="item"><span itemprop="name">Acuity Brands Lighting</span></a>
+                                <meta itemprop="position" content="1" />
+                            </li>
+                            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                                <a href="/404" itemprop="item"><span itemprop="name">Page Not Found</span></a>
+                                <meta itemprop="position" content="2" />
+                            </li>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+    <div class="container-fluid">
+        <div class="row two-col-stat-sublayout">
+            <div class="col-12 col-md-4">
+                
+
+        <section  class="no-background-color-content-area  ">
+            <div class="container-fluid  " >
+                <div class="row">
+                    <div class="col-12">
+<p style="text-align: center;"><img class="img-404" height="400" alt="Page not found" width="400" src="-/media/abl/shared-content/images/error-images/404.png?h=400&amp;w=400&amp;hash=22475C4C5F8644AB242CAA39B4F34205" />
+<br />
+<br />
+</p>                    </div>
+                </div>
+            </div>
+        </section>
+
+            </div>
+            <div class="col-12 col-md-8">
+                
+
+        <section   style="" class="no-background-color-content-area "  ng-controller="HeadingController" ng-init="init('')" ng-show="displayHeading">
+            <div class="container-fluid ">
+                <div class="row">
+                    <div id="heading-{{$id}}" class="col-12" ng-init="animation=''">
+                        <h1 class=' ' style='line-height: initial; '>Whoops! Looks like something is wrong here!</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section  class="no-background-color-content-area  ">
+            <div class="container-fluid  " >
+                <div class="row">
+                    <div class="col-12">
+<p><strong><span style="font-size: 18px;">LET'S GET YOU BACK ON TRACK</span></strong><br />
+<span style="font-size: 16px;"></span></p>
+<p style="margin-bottom:30px;"><span style="font-size: 16px;">Browse by the popular categories below:</span></p>                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    <div class="container-fluid" >
+        <div class="row category-card-row">
+    <div class="col-12 col-lg-4">
+<a href="/products" class="category-card" ><img src="/-/media/abl/shared-content/images/error-images/404-products.png?h=227&amp;w=227&amp;la=en&amp;hash=9B4BC0E473BCA8923C537C6CC38B3690" alt="404-products" />            <div class="category-card-label">
+                <h2>Products</h2>
+            </div>
+</a>    </div>
+    <div class="col-12 col-lg-4">
+<a href="/resources" class="category-card" ><img src="/-/media/abl/shared-content/images/error-images/404-resources.png?h=227&amp;w=227&amp;la=en&amp;hash=C0B50604EF5933E326FD8F1D34022705" alt="404-resources" />            <div class="category-card-label">
+                <h2>Resources</h2>
+            </div>
+</a>    </div>
+    <div class="col-12 col-lg-4">
+<a href="/support/how-to-buy" class="category-card" ><img src="/-/media/abl/shared-content/images/error-images/404-how-to-buy.png?h=227&amp;w=227&amp;la=en&amp;hash=CD305F70E271BA6AFCAC6B21D319DFBB" alt="404-how-to-buy" />            <div class="category-card-label">
+                <h2>How to Buy</h2>
+            </div>
+</a>    </div>
+    <div class="col-12 col-lg-4">
+<a href="/support/technical-support" class="category-card" ><img src="/-/media/abl/shared-content/images/error-images/404-tech-support.png?h=227&amp;w=227&amp;la=en&amp;hash=CD463D10612B67FA93F170A6D39DAC72" alt="404-tech-support" />            <div class="category-card-label">
+                <h2>Technical Support</h2>
+            </div>
+</a>    </div>
+    <div class="col-12 col-lg-4">
+<a href="/support/warranty" class="category-card" ><img src="/-/media/abl/shared-content/images/error-images/404-warranty.png?h=227&amp;w=227&amp;la=en&amp;hash=537331F76E0B6430E3337719FB235C11" alt="404-warranty" />            <div class="category-card-label">
+                <h2>Warranty</h2>
+            </div>
+</a>    </div>
+    <div class="col-12 col-lg-4">
+<a href="/contact" class="category-card" title="Contact" ><img src="/-/media/abl/shared-content/images/error-images/404-contact-us.png?h=227&amp;w=227&amp;la=en&amp;hash=0D0203CC4C36295714603DB2101FFDCF" alt="404-contact-us" />            <div class="category-card-label">
+                <h2>Contact Us</h2>
+            </div>
+</a>    </div>
+        </div>
+    </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="ixp-floating-button-wrapper">
+        <button class="ixp-floating-button" id="openIPXDialog" style="background-color: #007239">
+            <img class="ipx-button-image" src="/-/media/abl/shared-content/images/ipx/ab-ipx-help.png" />
+        </button>
+    </div>
+    <dialog id="productInfoModal" class="ixp-container">
+        <div class="ipx-dialog-content">
+            <div class="ipx-dialog-header">
+                <div class="ipx-logo-container">
+                    <div class="ipx-logo">
+                        <img class="ipx-header-logo" src="/-/media/abl/shared-content/images/ipx/ab-ipx-help.png" />
+                    </div>
+                    <div class="ipx-dialog-title">
+                        <h2>Product Information Help</h2>
+                        <span>Use this search tool to quickly locate product documents and specific product details.</span>
+                    </div>
+                </div>
+                <button class="ipx-close-button" id="closeIPXDialog">×</button>
+            </div>
+            <div class="ipx-dialog-body">
+                <!-- Replace <p> tag with Coveo widget -->
+                <p id="ipx-component-container" style="text-align: center">
+                    
+                </p>
+            </div>
+        </div>
+    </dialog>
+<script>
+        /* ########### Coveo IPX ############# */
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const modal = document.getElementById('productInfoModal');
+        const openButton = document.getElementById('openIPXDialog');
+        const closeButton = document.getElementById('closeIPXDialog');
+
+        // Open modal
+        openButton.addEventListener('click', function () {
+            activateCoveoIPXTool();
+            modal.showModal();
+        });
+
+        // Close modal with animation
+        function closeModalWithAnimation() {
+            modal.classList.add('ipx-closing');
+            modal.addEventListener('animationend', function handler() {
+                modal.close();
+                modal.classList.remove('ipx-closing');
+                modal.removeEventListener('animationend', handler);
+            }, { once: true });
+
+            resetIPXComponent();
+        }
+
+        // Close modal when close button is clicked
+        closeButton.addEventListener('click', function () {
+            closeModalWithAnimation();
+        });
+
+        // Close modal when clicking on the backdrop (anywhere outside)
+        modal.addEventListener('click', function (event) {
+            const rect = modal.getBoundingClientRect();
+            const isInDialog = (
+                rect.top <= event.clientY &&
+                event.clientY <= rect.top + rect.height &&
+                rect.left <= event.clientX &&
+                event.clientX <= rect.left + rect.width
+            );
+
+            if (!isInDialog) {
+                closeModalWithAnimation();
+            }
+        });
+
+        // Prevent propagation from dialog content to dialog
+        document.querySelector('.ipx-dialog-content').addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        // Add escape key handler
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && modal.hasAttribute('open')) {
+                event.preventDefault();
+                closeModalWithAnimation();
+            }
+        });
+
+
+        if ($("#ipxScript").length == 0 ) {
+            var newScriptElement = document.createElement("script");
+            newScriptElement.type = "text/javascript";
+            newScriptElement.src = "https://search.cloud.coveo.com/rest/organizations/acuitybrands/ipxinterface/v1/interfaces/c617fb4e-47fa-4137-b487-d5486e5df79f/loader";
+            newScriptElement.id = "ipxScript";
+
+            //Coveo recommends adding script tag to head
+            $("head").append(newScriptElement);
+        }
+
+    });
+
+    function activateCoveoIPXTool() {
+
+        var newRecommendationsLabel = 'How can we help?';
+
+        $('#ipxScript').ready(function () {
+
+            //This makes sure we only execute the code inside one time
+            if ($('[id^=coveo-ipx-]').length == 0) {
+
+                CoveoIPX.initialize('xx7fb70965-0711-4903-98d8-17f26e0a6cc7');
+
+                //Default Coveo label wil be used if new label is not provided
+                if (newRecommendationsLabel.length > 1) {
+
+                    setTimeout(function () {
+                        var covIpx = document.querySelector('coveo-ipx');
+
+                        if (covIpx) {
+                            covIpx.shadowRoot.querySelector('atomic-recs-interface > atomic-recs-list').setAttribute('label', newRecommendationsLabel);
+                        }
+
+                    }, 200);
+                }
+
+                setTimeout(function () {
+                    var covIpx = document.querySelector('coveo-ipx');
+
+                    if (covIpx) {
+                        covIpx.shadowRoot.querySelectorAll('atomic-ipx-embedded .footer-slot a').forEach(e => e.setAttribute('style', 'font-weight:bold'));
+                    }
+
+                }, 200);
+
+                logIPXClickEvent();
+
+            }
+
+            $("#ipx-component-container").focus();
+        });
+
+    }
+
+    function resetIPXComponent() {
+        if(document.querySelector("#coveo-ipx-" + "xx7fb70965-0711-4903-98d8-17f26e0a6cc7")!=null){
+            CoveoIPX.reset();
+        }
+    }
+
+    function logIPXClickEvent() {
+
+        //IPX is initialized at this point, but we also need to make sure the data is loaded before submitting analytics
+        setTimeout(function () {
+            var covIpx = document.querySelector('coveo-ipx');
+            if (!covIpx) return;
+            var ipxInterfaceElement = covIpx.shadowRoot.querySelector('atomic-search-interface');
+            var coveoSearchInterface = Coveo.$$(document).find('.CoveoSearchInterface');
+
+            if (ipxInterfaceElement) {
+                var ipxHub = ipxInterfaceElement.attributes.getNamedItem('search-hub');
+                var ipxHubName = ipxHub ? ipxHub.value: "";
+                var actionCause = 'IPXComponentTriggered';
+                var actionType = 'IPX Component Triggered';
+
+                var metadata = {
+                    page_id: ipxInterfaceElement.id,
+                    page_title: $(document).attr('title'),
+                    page_url: window.location.href,
+                    page_hub: ipxHubName
+                };
+
+                let customEventCause = { name: actionCause, type: actionType };
+
+                Coveo.logCustomEvent(coveoSearchInterface, customEventCause, metadata);
+            }
+
+        }, 1500);
+
+    }
+
+    // Debounce - not sure if this is needed. Leaving this method in place in case marketing decides they want a delay.
+    function debounce(func, time = 50) {
+
+        var timer;
+        return function (event) {
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(func, time, event);
+        };
+    }
+
+</script>
+
+    </div>
+    <div  class="footer-container">
+        
+
+
+
+<footer >
+
+    <div class="container-fluid">
+                <div class="row justify-content-center" >
+                        <div class="footer__link-list col-6 col-md-4 col-lg-2">
+        <section >
+                <span class="footer__link-list__link--headline">Our Company</span>
+
+        </section>
+    <ul class="unlisted " >
+                <li class="footer__link-list__sub-list">
+                            <section >
+<a href="https://www.acuityinc.com" class="footer__link-list__link--subhead" target="_blank" aria-label="Navigate to external site" >Acuity Inc</a>                            </section>
+
+                    <ul class="unlisted footer__link-list__accordion" >
+                            <li class="d-md-none"><a href="https://www.acuityinc.com">Visit Acuity Inc</a></li>
+
+                    </ul>
+                </li>
+                <li class="footer__link-list__sub-list">
+                            <section >
+<a href="https://www.acuityinc.com/what-we-do/acuity-brands-lighting" class="footer__link-list__link--subhead" target="_blank" aria-label="Navigate to external site" >Acuity Brands Lighting</a>                            </section>
+
+                    <ul class="unlisted footer__link-list__accordion" >
+                            <li class="d-md-none"><a href="https://www.acuityinc.com/what-we-do/acuity-brands-lighting">Visit Acuity Brands Lighting</a></li>
+
+                    </ul>
+                </li>
+                <li class="footer__link-list__sub-list">
+                            <section >
+<a href="https://www.acuityinc.com/what-we-do/acuity-intelligent-spaces" class="footer__link-list__link--subhead" target="_blank" aria-label="Navigate to external site" >Acuity Intelligent Spaces</a>                            </section>
+
+                    <ul class="unlisted footer__link-list__accordion" >
+                            <li class="d-md-none"><a href="https://www.acuityinc.com/what-we-do/acuity-intelligent-spaces">Visit Acuity Intelligent Spaces</a></li>
+
+                    </ul>
+                </li>
+    </ul>
+                        </div>
+
+                        <div class="footer__link-list col-6 col-md-4 col-lg-2">
+        <section >
+                <span class="footer__link-list__link--headline">Customer Support</span>
+
+        </section>
+    <ul class="unlisted " >
+                <li class="footer__link-list__sub-list">
+                            <section >
+<a href="/contact" class="footer__link-list__link--subhead" >Contact Us</a>                            </section>
+
+                    <ul class="unlisted footer__link-list__accordion" >
+                            <li class="d-md-none"><a href="/contact">Visit Contact Us</a></li>
+
+                    </ul>
+                </li>
+                <li class="footer__link-list__sub-list">
+                            <section >
+<a href="/resources" class="footer__link-list__link--subhead" >Resources</a>                            </section>
+
+                    <ul class="unlisted footer__link-list__accordion" >
+                            <li class="d-md-none"><a href="/resources">Visit Resources</a></li>
+
+                    </ul>
+                </li>
+    </ul>
+                        </div>
+
+                        <div class="footer__link-list col-6 col-md-4 col-lg-2">
+        <section >
+<a href="/support/how-to-buy" class="footer__link-list__link--headline" >How to Buy</a>
+        </section>
+    <ul class="unlisted " >
+    </ul>
+                        </div>
+
+                        <div class="footer__link-list col-6 col-md-4 col-lg-2">
+        <section >
+<a href="https://acuityinc.com/careers" class="footer__link-list__link--headline" target="_blank" aria-label="Navigate to external site" >Careers</a>
+        </section>
+    <ul class="unlisted " >
+    </ul>
+        <section >
+<a href="https://investors.acuityinc.com/" class="footer__link-list__link--headline" target="_blank" aria-label="Navigate to external site" >Investors</a>
+        </section>
+    <ul class="unlisted " >
+    </ul>
+                        </div>
+                </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="container-fluid">
+            <div class="footer__bottom row">
+
+                            <div class="col-2 col-md-2 footer__bottom__left">
+                                <i class="fas fa-globe-americas" style="color:white"></i><p style="text-transform:none !important;margin-left:5px;">English (United States)</p>
+                            </div>
+
+
+            <div class="col-8 col-md-8 footer__bottom__left">
+
+                <p>© 2025 Acuity Inc. All rights reserved.</p>
+<a href="/site-terms" class="" >Site Terms</a><a href="/privacy-statement" class="" >Privacy  Statement</a><a href="https://submit-irm.trustarc.com/services/validation/04276480-26cb-4cd6-acd5-e7b08cb11a1f" class="" target="_blank" aria-label="Navigate to external site" >Do Not Sell or Share My Personal Information</a><a href="https://submit-irm.trustarc.com/services/validation/93ef0a9f-35b3-49ec-9a3d-c524dab9e25c" class="" target="_blank" aria-label="Navigate to external site" >Exercise My Rights</a>                                    <div id="teconsent"></div>
+            </div>
+                <div class="col-2 col-md-2 footer__bottom__align-right">
+                            <ul class="unlisted inline" >
+                                        <li >
+<a href="https://www.facebook.com/acuityincofficial" class="" target="_blank" aria-label="Navigate to external site" title="Facebook" >                                                <i class="fab fa-facebook"></i>
+                                                <span class="hidden-text-for-accessibility">Facebook</span>
+</a>                                        </li>
+                                        <li >
+<a href="https://www.pinterest.com/AcuityBrands/" class="" target="_blank" aria-label="Navigate to external site" title="Pinterest" >                                                <i class="fab fa-pinterest"></i>
+                                                <span class="hidden-text-for-accessibility">Pinterest</span>
+</a>                                        </li>
+                                        <li >
+<a href="https://www.linkedin.com/company/acuity" class="" target="_blank" aria-label="Navigate to external site" title="LinkedIn" >                                                <i class="fab fa-linkedin"></i>
+                                                <span class="hidden-text-for-accessibility">LinkedIn</span>
+</a>                                        </li>
+                                        <li >
+<a href="https://www.youtube.com/@acuitybrands" class="" target="_blank" aria-label="Navigate to external site" title="YouTube" >                                                <i class="fab fa-youtube"></i>
+                                                <span class="hidden-text-for-accessibility">YouTube</span>
+</a>                                        </li>
+                                        <li >
+<a href="https://www.instagram.com/acuityinc" class="" target="_blank" aria-label="Navigate to external site" title="Instagram" >                                                <i class="fab fa-instagram"></i>
+                                                <span class="hidden-text-for-accessibility">Instagram</span>
+</a>                                        </li>
+                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- instanceID w_8M6 -->
+</footer>
+
+
+
+
+    </div>
+</div>
+
+    <input type="hidden" id="compareAlreadyAddedMsg" value="The selected product is already in the comparison list" />
+    <input type="hidden" id="docReadyNotifyTitle" value="&lt;strong&gt;Zip File Ready&lt;/strong&gt;&lt;br/&gt;" />
+    <input type="hidden" id="docReadyNotifyMessage" value="Your zip file for &lt;em&gt;[title]&lt;/em&gt; is ready, please click to download." />
+    <input type="hidden" id="runPolling" value="true" />
+    <input type="hidden" id="isAnonymous" value="True" />
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>window.bootstrap || document.write('<script src="Assets/js/fallback/bootstrap.min.js">\x3C/script>')</script>
+<script src="https://npmcdn.com/imagesloaded@4.1.0/imagesloaded.pkgd.min.js"></script>
+<script src="/Assets/js/fallback/isotope.pkgd.min.js"></script>
+<script src="https://scripts.sirv.com/sirvjs/v3/sirv.js"></script>
+<script>
+    SirvOptions = {
+        viewer: {
+            spin: {
+                hint: {
+                    message: {
+                        enable: false
+                    }
+                }
+            }
+        }
+    };
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"
+        integrity="sha384-kGrtvd68FCW4rm700QHDTxc+U3bQU+CnkhgAgqeJQoD4G9gWSlvNkZoXBfbMbTbk" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.7.5/angular-sanitize.min.js"
+        integrity="sha384-tqogAK81K0qoQY58ipJ+oKmu5c4+1MuUbxoGoKhLX64YMWYX45nkF4DalBTqHVBX" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.min.js"
+        integrity="sha384-fe2Hn6gXiuq1xOn2+4rgLaG7V1KiaTYDft+Bj7OuW0n/+KJN71Xu0hp2etPcdmQt" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lg-video@1.2.2/dist/lg-video.min.js"
+        integrity="sha384-wmlgRVr9YdyhCOPoVe/aFJwczUWLabwgC0D/RWUC4vTwMoMguJeL0H9JL8NGS6XJ" crossorigin="anonymous"></script>
+<script src="https://vjs.zencdn.net/4.12/video.js"
+        integrity="sha384-ASpnXcBA48Qc3JBbTmm50d/+JB08QZHajRgA3FYNDuNhCDBYo8Mf0HAUDyhXZ33t" crossorigin="anonymous"></script>
+
+<script src="https://npmcdn.com/isotope-packery@2.0.1/packery-mode.pkgd.js"
+        integrity="sha384-AK56aCCh9mVf1FKVeDTq+/77zyAY9jYlGJ4+rrv11JR23LM/BY6Br/Ww6h6Z+5nX" crossorigin="anonymous"></script>
+
+
+<script src="/bundles/defaultScripts?v=gDhtVkEx-qPO-LRozD153E0KQYmCn1xNvH2Bgw88olk1"></script>
+
+
+
+
+
+
+</body>
+</html>

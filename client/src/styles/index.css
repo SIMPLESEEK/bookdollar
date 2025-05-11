@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f9fa;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* 应用容器 */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 主内容区域 */
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+/* 侧边栏 */
+.sidebar {
+  width: 250px;
+  padding: 1rem;
+  background-color: white;
+  border-right: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+/* 内容区域 */
+.content-area {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Masonry 瀑布流布局 */
+.my-masonry-grid {
+  display: flex;
+  width: auto;
+  margin-left: -1rem; /* 抵消列间距 */
+}
+
+.my-masonry-grid_column {
+  padding-left: 1rem; /* 列间距 */
+  background-clip: padding-box;
+}
+
+/* 书签卡片在 Masonry 布局中的样式 */
+.my-masonry-grid_column > div {
+  margin-bottom: 1rem; /* 卡片间的垂直间距 */
+}
+
+/* 书签卡片 */
+.bookmark-card {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  height: fit-content; /* 高度自适应内容 */
+  background-color: white; /* 确保背景为白色 */
+}
+
+.bookmark-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 书签预览图 */
+.bookmark-preview {
+  position: relative;
+  width: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f1f5f9;
+  border-bottom: none; /* 移除底部边框，消除缝隙 */
+  transition: all 0.2s ease-in-out;
+}
+
+/* 预览图悬停效果 */
+.bookmark-preview:hover {
+  box-shadow: inset 0 0 0 2px rgba(0, 102, 255, 0.3);
+}
+
+/* 书签内容 */
+.bookmark-content {
+  padding: 1rem;
+}
+
+/* 标签样式 */
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background-color: #e5e7eb;
+  color: #4b5563;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.tag:hover {
+  background-color: #d1d5db;
+}
+
+.bookmark-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+/* 表单控件 */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+/* 按钮 */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #0066ff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0052cc;
+}

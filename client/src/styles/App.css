@@ -1,0 +1,295 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.content-area {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+}
+
+/* 书签卡片样式 */
+.bookmark-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 0.75rem;
+}
+
+.bookmark-card {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bookmark-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bookmark-preview {
+  height: 130px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: none; /* 移除底部边框，消除缝隙 */
+}
+
+.bookmark-content {
+  padding: 1rem;
+}
+
+.bookmark-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  padding: 0.15rem 0.4rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  background-color: #e9ecef;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tag:hover {
+  background-color: #dee2e6;
+  transform: translateY(-1px);
+}
+
+/* 侧边栏样式 */
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid #dee2e6;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* 文件夹菜单按钮默认隐藏，鼠标悬停时显示 */
+.sidebar li .relative button {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.sidebar li:hover .relative button {
+  opacity: 1;
+}
+
+/* 确保文件夹菜单在正确的位置 */
+.sidebar .relative {
+  position: relative;
+}
+
+.sidebar .absolute {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  /* 在移动设备上始终显示菜单按钮 */
+  .sidebar li .relative button {
+    opacity: 1;
+  }
+
+  /* 移动端文件夹横向滚动样式 */
+  .sidebar .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow-x: auto;
+    padding: 4px 0;
+  }
+
+  .sidebar .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+
+  /* 移动端文件夹样式 */
+  .sidebar .flex-shrink-0 {
+    min-width: -webkit-fill-available; /* 兼容 Samsung Internet */
+    min-width: fit-content;
+  }
+
+  /* 移动端文件夹容器样式 */
+  .sidebar .mobile-folders {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* 移动端文件夹项目样式 */
+  .sidebar .mobile-folders a {
+    padding: 8px 12px;
+    border: 1px solid #eaeaea;
+    transition: all 0.2s ease;
+  }
+
+  .sidebar .mobile-folders a:active {
+    transform: scale(0.98);
+  }
+}
+
+/* 导航栏样式 */
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #dee2e6;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 未登录状态下，BookDollar标志居中显示 */
+.navbar-not-authenticated {
+  position: relative;
+  justify-content: center;
+}
+
+.navbar-not-authenticated > div:first-child {
+  position: absolute;
+  left: 1rem;
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    max-width: none;
+    margin: 0 0.25rem;
+    flex: 1 1 auto;
+  }
+
+  .navbar {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .navbar > div:first-child {
+    flex-shrink: 0;
+  }
+
+  .navbar .flex.items-center {
+    flex-shrink: 0;
+  }
+
+  .form-control {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .btn {
+    padding: 0.5rem 0.5rem;
+  }
+
+  /* 移动端搜索按钮和添加按钮样式 */
+  .navbar button[type="submit"],
+  .navbar button.btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  /* 减小标题大小 */
+  .navbar h1 {
+    font-size: 1.1rem;
+  }
+}
+
+/* 表单样式 */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  height: 2.5rem;
+  line-height: 1.5;
+}
+
+/* 模态框样式 */
+.modal-content {
+  animation: none !important;
+  transition: none !important;
+  will-change: auto !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  perspective: 1000px !important;
+}
+
+/* 禁用所有动画和过渡效果 */
+.no-animation {
+  animation: none !important;
+  transition: none !important;
+  will-change: auto !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  perspective: 1000px !important;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
