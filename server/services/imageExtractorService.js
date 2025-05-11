@@ -156,28 +156,33 @@ async function extractImageFromUrl(url) {
       }
     }
 
-    // 如果COS上没有，检查本地是否有缓存
-    if (fs.existsSync(filePath)) {
-      // 获取文件的创建时间
-      const stats = await promisify(fs.stat)(filePath);
-      const fileAge = Date.now() - stats.mtime.getTime();
+    // 在Vercel环境中，跳过本地缓存检查
+    // 在非Vercel环境中，检查本地是否有缓存
+    if (!process.env.VERCEL && fs.existsSync(filePath)) {
+      try {
+        // 获取文件的创建时间
+        const stats = await promisify(fs.stat)(filePath);
+        const fileAge = Date.now() - stats.mtime.getTime();
 
-      // 如果文件不超过7天，直接返回缓存的预览图
-      if (fileAge < 7 * 24 * 60 * 60 * 1000) {
-        console.log(`[图片提取] 使用本地缓存的预览图: ${filePath}`);
+        // 如果文件不超过7天，直接返回缓存的预览图
+        if (fileAge < 7 * 24 * 60 * 60 * 1000) {
+          console.log(`[图片提取] 使用本地缓存的预览图: ${filePath}`);
 
-        // 如果配置了腾讯云COS，将本地缓存上传到COS
-        if (cos && process.env.COS_BUCKET) {
-          try {
-            const fileData = await promisify(fs.readFile)(filePath);
-            await uploadToCOS(fileName, fileData);
-            console.log(`[图片提取] 本地缓存已上传到COS`);
-          } catch (uploadError) {
-            console.error('[图片提取] 上传本地缓存到COS失败:', uploadError.message);
+          // 如果配置了腾讯云COS，将本地缓存上传到COS
+          if (cos && process.env.COS_BUCKET) {
+            try {
+              const fileData = await promisify(fs.readFile)(filePath);
+              await uploadToCOS(fileName, fileData);
+              console.log(`[图片提取] 本地缓存已上传到COS`);
+            } catch (uploadError) {
+              console.error('[图片提取] 上传本地缓存到COS失败:', uploadError.message);
+            }
           }
-        }
 
-        return { success: true, previewImage: publicPath };
+          return { success: true, previewImage: publicPath };
+        }
+      } catch (error) {
+        console.error(`[图片提取] 检查本地缓存失败: ${error.message}`);
       }
     }
 

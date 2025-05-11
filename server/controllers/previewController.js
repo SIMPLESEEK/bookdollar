@@ -21,10 +21,17 @@ try {
 }
 
 // 尝试加载Puppeteer截图服务
-try {
-  screenshotService = require('../services/screenshotService');
-} catch (error) {
-  console.log('Puppeteer截图服务加载失败，将尝试其他方案');
+// 在Vercel环境中，不加载Puppeteer服务，因为Vercel不支持Chrome
+if (!process.env.VERCEL) {
+  try {
+    screenshotService = require('../services/screenshotService');
+    console.log('Puppeteer截图服务加载成功');
+  } catch (error) {
+    console.log('Puppeteer截图服务加载失败，将尝试其他方案:', error.message);
+    screenshotService = null;
+  }
+} else {
+  console.log('在Vercel环境中，跳过加载Puppeteer截图服务');
   screenshotService = null;
 }
 
