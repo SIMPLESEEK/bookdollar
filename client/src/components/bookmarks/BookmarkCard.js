@@ -235,14 +235,14 @@ const BookmarkCard = ({ bookmark }) => {
       >
         {/* 悬停提示 - PC端显示粘贴提示，移动端显示上传提示 */}
         {!isMobile ? (
-          <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 hover:opacity-100 transition-opacity duration-200 z-5">
+          <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 hover:opacity-100 transition-opacity duration-200 z-3">
             <div className="text-center px-4">
               <div className="text-lg font-bold mb-1">粘贴图片</div>
               <div className="text-sm">复制图片后点击此处粘贴 (Ctrl+V)</div>
             </div>
           </div>
         ) : (
-          <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 hover:opacity-100 transition-opacity duration-200 z-5">
+          <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 hover:opacity-100 transition-opacity duration-200 z-3">
             <div className="text-center px-4">
               <div className="text-base font-bold mb-0.5">上传图片</div>
               <div className="text-xs">点击右上角按钮上传图片</div>
@@ -250,12 +250,14 @@ const BookmarkCard = ({ bookmark }) => {
           </div>
         )}
         {/* 预览图上传按钮 - 使用更符合上传语义的图标，低调样式但悬停时有明显反差 */}
-        <div className="absolute top-1 right-1 flex space-x-1 z-5">
+        <div className="absolute top-1 right-1 flex space-x-1 z-10">
           <button
             className={`bg-white bg-opacity-70 text-gray-400 hover:text-blue-500 hover:bg-white hover:bg-opacity-90 ${isMobile ? 'p-1' : 'p-1.5'} rounded-full transition-all duration-200`}
             style={{
               border: '1px solid #d1d5db', // 淡灰色边框
               boxShadow: '0 1px 2px rgba(0,0,0,0.1)', // 轻微阴影
+              position: 'relative', // 确保按钮有自己的定位上下文
+              zIndex: 10, // 确保按钮在最上层
             }}
             onMouseOver={(e) => {
               e.currentTarget.style.border = '1px solid #9ca3af'; // 悬停时边框变深
@@ -315,7 +317,7 @@ const BookmarkCard = ({ bookmark }) => {
               maxHeight: '100%',
               overflow: 'hidden',
               width: '100%',
-              zIndex: 5,
+              zIndex: 2, // 降低z-index，确保不会覆盖上传按钮
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',

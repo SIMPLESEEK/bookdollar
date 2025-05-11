@@ -193,19 +193,31 @@ async function extractImageFromUrl(url) {
       // 设置请求选项
       const options = {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-          'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8'
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+          'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
+          'Sec-Ch-Ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+          'Sec-Ch-Ua-Mobile': '?0',
+          'Sec-Ch-Ua-Platform': '"Windows"',
+          'Sec-Fetch-Dest': 'document',
+          'Sec-Fetch-Mode': 'navigate',
+          'Sec-Fetch-Site': 'none',
+          'Sec-Fetch-User': '?1',
+          'Upgrade-Insecure-Requests': '1'
         },
-        timeout: 15000, // 增加超时时间
-        maxContentLength: 10 * 1024 * 1024, // 限制响应大小为10MB
+        timeout: process.env.VERCEL ? 8000 : 15000, // Vercel环境下减少超时时间
+        maxContentLength: 5 * 1024 * 1024, // 在Vercel环境下减小响应大小限制为5MB
         httpsAgent: new https.Agent({
           rejectUnauthorized: false
         }),
         // 在Vercel环境中，添加更多的选项
         validateStatus: function (status) {
           return status >= 200 && status < 400; // 只接受2xx和3xx的状态码
-        }
+        },
+        // 添加重定向支持
+        maxRedirects: 5
       };
 
       console.log(`[图片提取] 发送HTTP请求，超时设置: ${options.timeout}ms`);
@@ -308,13 +320,32 @@ async function extractImageFromUrl(url) {
       // 下载图片
       try {
         console.log(`[图片提取] 开始下载图片: ${imageUrl}`);
-        const imageResponse = await axios.get(imageUrl, {
+
+        // 设置图片下载选项
+        const imageOptions = {
           responseType: 'arraybuffer',
-          timeout: 15000, // 增加超时时间
+          timeout: process.env.VERCEL ? 8000 : 15000, // Vercel环境下减少超时时间
           httpsAgent: new https.Agent({
             rejectUnauthorized: false
-          })
-        });
+          }),
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+            'Referer': url, // 添加引用页，很多网站需要这个
+            'Sec-Fetch-Dest': 'image',
+            'Sec-Fetch-Mode': 'no-cors',
+            'Sec-Fetch-Site': 'cross-site'
+          },
+          maxRedirects: 5,
+          validateStatus: function (status) {
+            return status >= 200 && status < 400; // 只接受2xx和3xx的状态码
+          }
+        };
+
+        const imageResponse = await axios.get(imageUrl, imageOptions);
 
         console.log(`[图片提取] 图片下载成功，大小: ${imageResponse.data.length} 字节`);
 
@@ -439,6 +470,11 @@ function findBestImage($, baseUrl) {
   let bestScore = 0;
   let allImages = [];
 
+  // 在Vercel环境中，添加更多的日志
+  if (process.env.VERCEL) {
+    console.log(`[图片提取] findBestImage: 在Vercel环境中运行`);
+  }
+
   try {
     // 1. 首先尝试获取Open Graph图片（通常是页面的主要图片）
     const ogImage = $('meta[property="og:image"]').attr('content');
@@ -457,7 +493,7 @@ function findBestImage($, baseUrl) {
     }
 
     // 2. 尝试获取Twitter卡片图片
-    const twitterImage = $('meta[name="twitter:image"]').attr('content');
+    const twitterImage = $('meta[name="twitter:image"]').attr('content') || $('meta[name="twitter:image:src"]').attr('content');
     if (twitterImage) {
       console.log(`[图片提取] findBestImage: 找到Twitter卡片图片: ${twitterImage}`);
       const twitterImageUrl = resolveUrl(twitterImage, baseUrl);
@@ -470,6 +506,27 @@ function findBestImage($, baseUrl) {
       }
     } else {
       console.log(`[图片提取] findBestImage: 未找到Twitter卡片图片`);
+    }
+
+    // 2.1 尝试获取其他元数据图片
+    const metaImages = [
+      $('meta[property="og:image:secure_url"]').attr('content'),
+      $('meta[property="og:image:url"]').attr('content'),
+      $('meta[name="thumbnail"]').attr('content'),
+      $('meta[name="image"]').attr('content'),
+      $('meta[itemprop="image"]').attr('content'),
+      $('link[rel="image_src"]').attr('href')
+    ].filter(Boolean);
+
+    for (const metaImage of metaImages) {
+      if (metaImage) {
+        console.log(`[图片提取] findBestImage: 找到元数据图片: ${metaImage}`);
+        const metaImageUrl = resolveUrl(metaImage, baseUrl);
+        if (metaImageUrl && !isLikelyLogo(metaImageUrl, '')) {
+          console.log(`[图片提取] findBestImage: 使用元数据图片: ${metaImageUrl}`);
+          return metaImageUrl;
+        }
+      }
     }
   } catch (error) {
     console.error(`[图片提取] findBestImage: 处理元数据图片时出错: ${error.message}`);

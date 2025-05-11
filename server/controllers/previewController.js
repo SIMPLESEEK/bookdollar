@@ -258,28 +258,77 @@ exports.generatePreview = async (req, res) => {
     // 如果所有服务都不可用或失败，使用颜色预览作为备选方案
     console.log(`所有预览图服务都失败，使用颜色预览作为备选方案`);
 
+    // 在Vercel环境中添加更多日志
+    if (process.env.VERCEL) {
+      console.log('在Vercel环境中运行颜色预览生成');
+      console.log(`环境变量: NODE_ENV=${process.env.NODE_ENV}, VERCEL=${process.env.VERCEL}`);
+      console.log(`COS配置: Bucket=${process.env.COS_BUCKET ? '已配置' : '未配置'}, Region=${process.env.COS_REGION || '未配置'}`);
+      console.log(`COS域名: ${process.env.COS_DOMAIN || '未配置'}`);
+    }
+
     // 尝试获取网页标题
     let pageTitle = '';
     try {
       // 使用简单的HTTP请求获取网页标题
-      const titleResponse = await axios.get(url, {
+      const titleOptions = {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+          'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
         },
-        timeout: 5000,
+        timeout: process.env.VERCEL ? 8000 : 10000, // Vercel环境下减少超时时间
         httpsAgent: new https.Agent({
           rejectUnauthorized: false
-        })
-      });
+        }),
+        maxRedirects: 5,
+        validateStatus: function (status) {
+          return status >= 200 && status < 400; // 只接受2xx和3xx的状态码
+        }
+      };
+
+      console.log(`尝试获取网页标题: ${url}`);
+      const titleResponse = await axios.get(url, titleOptions);
 
       // 使用正则表达式提取标题
       const titleMatch = titleResponse.data.match(/<title[^>]*>([^<]+)<\/title>/i);
       if (titleMatch && titleMatch[1]) {
         pageTitle = titleMatch[1].trim();
         console.log(`提取到网页标题: ${pageTitle}`);
+      } else {
+        // 尝试从其他元素提取标题
+        try {
+          const $ = cheerio.load(titleResponse.data);
+          const h1Text = $('h1').first().text().trim();
+          if (h1Text) {
+            pageTitle = h1Text;
+            console.log(`从H1标签获取到标题: ${pageTitle}`);
+          } else {
+            // 尝试从URL中提取域名作为标题
+            try {
+              const urlObj = new URL(url);
+              pageTitle = urlObj.hostname;
+              console.log(`从URL获取到域名作为标题: ${pageTitle}`);
+            } catch (urlError) {
+              console.error(`URL解析失败: ${urlError.message}`);
+            }
+          }
+        } catch (cheerioError) {
+          console.error(`解析HTML失败: ${cheerioError.message}`);
+        }
       }
     } catch (error) {
       console.error('获取网页标题失败:', error.message);
+
+      // 尝试从URL中提取域名作为标题
+      try {
+        const urlObj = new URL(url);
+        pageTitle = urlObj.hostname;
+        console.log(`从URL获取到域名作为标题: ${pageTitle}`);
+      } catch (urlError) {
+        console.error(`URL解析失败: ${urlError.message}`);
+      }
     }
 
     const colorPreview = colorPreviewService.generateColorPreview(url, pageTitle);

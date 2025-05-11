@@ -5,10 +5,22 @@ const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
 
+// 检查环境
+console.log(`当前环境: NODE_ENV=${process.env.NODE_ENV}, VERCEL=${process.env.VERCEL || '未设置'}`);
+
 // 检查必要的环境变量
 if (!process.env.JWT_SECRET) {
   console.error('错误: 未设置JWT_SECRET环境变量');
-  process.exit(1);
+  if (!process.env.VERCEL) {
+    process.exit(1);
+  }
+}
+
+// 检查COS配置
+if (process.env.VERCEL) {
+  console.log('在Vercel环境中运行');
+  console.log(`COS配置: Bucket=${process.env.COS_BUCKET ? '已配置' : '未配置'}, Region=${process.env.COS_REGION || '未配置'}`);
+  console.log(`COS域名: ${process.env.COS_DOMAIN || '未配置'}`);
 }
 
 // 导入路由

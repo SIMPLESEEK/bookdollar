@@ -28,6 +28,7 @@
     "CI": "false",
     "DISABLE_ESLINT_PLUGIN": "true",
     "ESLINT_NO_DEV_ERRORS": "true",
-    "VERCEL": "true"
+    "VERCEL": "true",
+    "VERCEL_ENV": "production"
   }
 }
