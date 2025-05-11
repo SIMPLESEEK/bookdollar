@@ -24,10 +24,20 @@ try {
   console.error('腾讯云COS SDK加载失败:', error.message);
 }
 
-// 确保上传目录存在
-const uploadDir = path.join(__dirname, '../../client/public/uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+// 在Vercel环境中，我们不能依赖本地文件系统
+// 定义上传目录路径，但在Vercel环境中不会实际创建
+const uploadDir = process.env.VERCEL
+  ? '/tmp/uploads' // 在Vercel中使用临时目录
+  : path.join(__dirname, '../../client/public/uploads');
+
+// 只在非Vercel环境中创建目录
+if (!process.env.VERCEL && !fs.existsSync(uploadDir)) {
+  try {
+    fs.mkdirSync(uploadDir, { recursive: true });
+    console.log(`创建上传目录: ${uploadDir}`);
+  } catch (error) {
+    console.error(`创建上传目录失败: ${error.message}`);
+  }
 }
 
 // 配置Multer存储
@@ -136,25 +146,59 @@ router.post('/upload', protect, (req, res) => {
       const localPath = `/uploads/${req.file.filename}`;
       console.log('生成的本地路径:', localPath);
 
-      // 如果配置了腾讯云COS，上传到COS
-      let previewImage = localPath;
-      if (cos && process.env.COS_BUCKET) {
+      // 在Vercel环境中，必须使用腾讯云COS
+      if (process.env.VERCEL) {
+        if (!cos || !process.env.COS_BUCKET) {
+          console.error('Vercel环境中未配置腾讯云COS，无法上传图片');
+          return res.status(500).json({
+            success: false,
+            message: 'Vercel环境中未配置腾讯云COS，无法上传图片'
+          });
+        }
+
         try {
           const cosUrl = await uploadToCOS(req.file.filename, req.file.path);
-          if (cosUrl) {
-            previewImage = cosUrl;
-            console.log('使用腾讯云COS URL:', previewImage);
+          if (!cosUrl) {
+            return res.status(500).json({
+              success: false,
+              message: '上传到腾讯云COS失败'
+            });
           }
-        } catch (cosError) {
-          console.error('上传到腾讯云COS失败，使用本地路径:', cosError);
-        }
-      }
 
-      res.json({
-        success: true,
-        previewImage: previewImage,
-        message: '图片上传成功'
-      });
+          console.log('使用腾讯云COS URL:', cosUrl);
+          return res.json({
+            success: true,
+            previewImage: cosUrl,
+            message: '图片上传成功'
+          });
+        } catch (cosError) {
+          console.error('上传到腾讯云COS失败:', cosError);
+          return res.status(500).json({
+            success: false,
+            message: '上传到腾讯云COS失败: ' + (cosError.message || '未知错误')
+          });
+        }
+      } else {
+        // 非Vercel环境，可以使用本地路径，但如果配置了COS，优先使用COS
+        let previewImage = localPath;
+        if (cos && process.env.COS_BUCKET) {
+          try {
+            const cosUrl = await uploadToCOS(req.file.filename, req.file.path);
+            if (cosUrl) {
+              previewImage = cosUrl;
+              console.log('使用腾讯云COS URL:', previewImage);
+            }
+          } catch (cosError) {
+            console.error('上传到腾讯云COS失败，使用本地路径:', cosError);
+          }
+        }
+
+        return res.json({
+          success: true,
+          previewImage: previewImage,
+          message: '图片上传成功'
+        });
+      }
     } catch (error) {
       console.error('处理上传图片失败:', error);
       res.status(500).json({

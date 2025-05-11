@@ -60,15 +60,34 @@ const BookmarkCard = ({ bookmark }) => {
     try {
       setUploadingImage(true);
 
+      // 检查文件类型
+      if (!file.type.startsWith('image/')) {
+        alert('只能上传图片文件');
+        return;
+      }
+
+      // 检查文件大小
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSize) {
+        alert('图片文件不能超过5MB');
+        return;
+      }
+
       const result = await PreviewService.uploadImage(file);
 
       if (result && result.success && result.previewImage) {
         await updateBookmark(bookmark._id, { previewImage: result.previewImage });
       } else {
         console.error('上传图片返回无效结果:', result);
+        if (result && result.message) {
+          alert(`上传失败: ${result.message}`);
+        } else {
+          alert('上传图片失败，请稍后重试');
+        }
       }
     } catch (error) {
       console.error('上传图片失败:', error);
+      alert('上传图片失败，请稍后重试');
     } finally {
       setUploadingImage(false);
     }
@@ -94,15 +113,28 @@ const BookmarkCard = ({ bookmark }) => {
     try {
       setUploadingImage(true);
 
+      // 检查文件大小
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (blob.size > maxSize) {
+        alert('图片文件不能超过5MB');
+        return;
+      }
+
       const result = await PreviewService.uploadImage(blob);
 
       if (result && result.success && result.previewImage) {
         await updateBookmark(bookmark._id, { previewImage: result.previewImage });
       } else {
         console.error('粘贴图片上传返回无效结果:', result);
+        if (result && result.message) {
+          alert(`上传失败: ${result.message}`);
+        } else {
+          alert('粘贴图片上传失败，请尝试使用上传按钮');
+        }
       }
     } catch (error) {
       console.error('粘贴图片失败:', error);
+      alert('粘贴图片失败，请尝试使用上传按钮');
     } finally {
       setUploadingImage(false);
     }

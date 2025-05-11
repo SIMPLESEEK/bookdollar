@@ -64,6 +64,37 @@ BookDollar是一个现代化的浏览器收藏夹应用，旨在解决传统浏�
 5. 访问应用
    - 打开浏览器访问 `http://localhost:5001`
 
+## Vercel 部署指南
+
+BookDollar 可以轻松部署到 Vercel 平台。请按照以下步骤操作：
+
+1. 在 Vercel 上创建新项目
+   - 连接您的 GitHub 仓库
+   - 选择 BookDollar 仓库
+
+2. 配置环境变量
+   - 在 Vercel 项目设置中添加以下环境变量：
+     ```
+     MONGODB_URI=your_mongodb_atlas_connection_string
+     JWT_SECRET=your_jwt_secret_key
+     NODE_ENV=production
+     VERCEL=true
+     COS_SECRET_ID=your_cos_secret_id
+     COS_SECRET_KEY=your_cos_secret_key
+     COS_REGION=your_cos_region
+     COS_BUCKET=your_cos_bucket
+     ```
+
+3. 部署项目
+   - Vercel 将自动构建和部署您的应用
+   - 部署完成后，您可以通过提供的 URL 访问您的应用
+
+### 注意事项
+
+- 在 Vercel 环境中，预览图和图片上传功能依赖于腾讯云 COS
+- 确保正确配置了腾讯云 COS 环境变量
+- Vercel 不支持本地文件系统持久化，所有图片必须存储在 COS 中
+
 ## 使用指南
 
 ### 添加收藏

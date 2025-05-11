@@ -37,10 +37,20 @@ try {
   mcpScreenshotService = null;
 }
 
-// 确保预览图目录存在
-const previewDir = path.join(__dirname, '../../client/public/previews');
-if (!fs.existsSync(previewDir)) {
-  fs.mkdirSync(previewDir, { recursive: true });
+// 在Vercel环境中，我们不能依赖本地文件系统
+// 定义预览图目录路径，但在Vercel环境中不会实际创建
+const previewDir = process.env.VERCEL
+  ? '/tmp/previews' // 在Vercel中使用临时目录
+  : path.join(__dirname, '../../client/public/previews');
+
+// 只在非Vercel环境中创建目录
+if (!process.env.VERCEL && !fs.existsSync(previewDir)) {
+  try {
+    fs.mkdirSync(previewDir, { recursive: true });
+    console.log(`创建预览图目录: ${previewDir}`);
+  } catch (error) {
+    console.error(`创建预览图目录失败: ${error.message}`);
+  }
 }
 
 // 生成预览图
@@ -58,48 +68,95 @@ exports.generatePreview = async (req, res) => {
     const filePath = path.join(previewDir, fileName);
     const publicPath = `/previews/${fileName}`;
 
-    // 检查是否已经有缓存的预览图
-    if (fs.existsSync(filePath)) {
-      // 获取文件的创建时间
-      const stats = await promisify(fs.stat)(filePath);
-      const fileAge = Date.now() - stats.mtime.getTime();
+    // 在非Vercel环境中检查本地缓存
+    if (!process.env.VERCEL && fs.existsSync(filePath)) {
+      try {
+        // 获取文件的创建时间
+        const stats = await promisify(fs.stat)(filePath);
+        const fileAge = Date.now() - stats.mtime.getTime();
 
-      // 如果文件不超过7天，直接返回缓存的预览图
-      if (fileAge < 7 * 24 * 60 * 60 * 1000) {
-        // 尝试获取网页标题
-        let pageTitle = '';
-        try {
-          // 使用简单的HTTP请求获取网页标题
-          const titleResponse = await axios.get(url, {
-            headers: {
-              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            },
-            timeout: 5000,
-            httpsAgent: new https.Agent({
-              rejectUnauthorized: false
-            })
+        // 如果文件不超过7天，直接返回缓存的预览图
+        if (fileAge < 7 * 24 * 60 * 60 * 1000) {
+          // 尝试获取网页标题
+          let pageTitle = '';
+          try {
+            // 使用简单的HTTP请求获取网页标题
+            const titleResponse = await axios.get(url, {
+              headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+              },
+              timeout: 5000,
+              httpsAgent: new https.Agent({
+                rejectUnauthorized: false
+              })
+            });
+
+            // 使用正则表达式提取标题
+            const titleMatch = titleResponse.data.match(/<title[^>]*>([^<]+)<\/title>/i);
+            if (titleMatch && titleMatch[1]) {
+              pageTitle = titleMatch[1].trim();
+              console.log(`提取到网页标题: ${pageTitle}`);
+            }
+
+            // 对于特定网站的特殊处理
+            if (url.includes('quark.cn') || url.includes('ai.quark.cn')) {
+              pageTitle = '夸克';
+              console.log(`特殊处理夸克网站，设置标题为: ${pageTitle}`);
+            }
+          } catch (error) {
+            console.error('获取网页标题失败:', error.message);
+          }
+
+          return res.json({
+            previewImage: publicPath,
+            pageTitle: pageTitle || ''
           });
-
-          // 使用正则表达式提取标题
-          const titleMatch = titleResponse.data.match(/<title[^>]*>([^<]+)<\/title>/i);
-          if (titleMatch && titleMatch[1]) {
-            pageTitle = titleMatch[1].trim();
-            console.log(`提取到网页标题: ${pageTitle}`);
-          }
-
-          // 对于特定网站的特殊处理
-          if (url.includes('quark.cn') || url.includes('ai.quark.cn')) {
-            pageTitle = '夸克';
-            console.log(`特殊处理夸克网站，设置标题为: ${pageTitle}`);
-          }
-        } catch (error) {
-          console.error('获取网页标题失败:', error.message);
         }
+      } catch (error) {
+        console.error('检查本地缓存失败:', error.message);
+      }
+    }
 
-        return res.json({
-          previewImage: publicPath,
-          pageTitle: pageTitle || ''
-        });
+    // 在Vercel环境中，首先尝试从COS获取
+    if (process.env.VERCEL && imageExtractorService) {
+      try {
+        const cosPreviewPath = await imageExtractorService.getFromCOS(fileName);
+        if (cosPreviewPath) {
+          console.log(`从COS获取预览图成功: ${cosPreviewPath}`);
+
+          // 尝试获取网页标题
+          let pageTitle = '';
+          try {
+            const titleResponse = await axios.get(url, {
+              headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+              },
+              timeout: 5000,
+              httpsAgent: new https.Agent({
+                rejectUnauthorized: false
+              })
+            });
+
+            const titleMatch = titleResponse.data.match(/<title[^>]*>([^<]+)<\/title>/i);
+            if (titleMatch && titleMatch[1]) {
+              pageTitle = titleMatch[1].trim();
+              console.log(`提取到网页标题: ${pageTitle}`);
+            }
+
+            if (url.includes('quark.cn') || url.includes('ai.quark.cn')) {
+              pageTitle = '夸克';
+            }
+          } catch (error) {
+            console.error('获取网页标题失败:', error.message);
+          }
+
+          return res.json({
+            previewImage: cosPreviewPath,
+            pageTitle: pageTitle || ''
+          });
+        }
+      } catch (error) {
+        console.error('从COS获取预览图失败:', error.message);
       }
     }
 
@@ -218,42 +275,89 @@ exports.getPreview = async (req, res) => {
     const filePath = path.join(previewDir, fileName);
     const publicPath = `/previews/${fileName}`;
 
-    // 检查是否已经有缓存的预览图
-    if (fs.existsSync(filePath)) {
-      // 尝试获取网页标题
-      let pageTitle = '';
+    // 在非Vercel环境中检查本地缓存
+    if (!process.env.VERCEL && fs.existsSync(filePath)) {
       try {
-        // 使用简单的HTTP请求获取网页标题
-        const titleResponse = await axios.get(url, {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-          },
-          timeout: 5000,
-          httpsAgent: new https.Agent({
-            rejectUnauthorized: false
-          })
-        });
+        // 尝试获取网页标题
+        let pageTitle = '';
+        try {
+          // 使用简单的HTTP请求获取网页标题
+          const titleResponse = await axios.get(url, {
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            },
+            timeout: 5000,
+            httpsAgent: new https.Agent({
+              rejectUnauthorized: false
+            })
+          });
 
-        // 使用正则表达式提取标题
-        const titleMatch = titleResponse.data.match(/<title[^>]*>([^<]+)<\/title>/i);
-        if (titleMatch && titleMatch[1]) {
-          pageTitle = titleMatch[1].trim();
-          console.log(`提取到网页标题: ${pageTitle}`);
+          // 使用正则表达式提取标题
+          const titleMatch = titleResponse.data.match(/<title[^>]*>([^<]+)<\/title>/i);
+          if (titleMatch && titleMatch[1]) {
+            pageTitle = titleMatch[1].trim();
+            console.log(`提取到网页标题: ${pageTitle}`);
+          }
+
+          // 对于特定网站的特殊处理
+          if (url.includes('quark.cn') || url.includes('ai.quark.cn')) {
+            pageTitle = '夸克';
+            console.log(`特殊处理夸克网站，设置标题为: ${pageTitle}`);
+          }
+        } catch (error) {
+          console.error('获取网页标题失败:', error.message);
         }
 
-        // 对于特定网站的特殊处理
-        if (url.includes('quark.cn') || url.includes('ai.quark.cn')) {
-          pageTitle = '夸克';
-          console.log(`特殊处理夸克网站，设置标题为: ${pageTitle}`);
+        return res.json({
+          previewImage: publicPath,
+          pageTitle: pageTitle || ''
+        });
+      } catch (error) {
+        console.error('检查本地缓存失败:', error.message);
+      }
+    }
+
+    // 在Vercel环境中，首先尝试从COS获取
+    if (process.env.VERCEL && imageExtractorService) {
+      try {
+        const cosPreviewPath = await imageExtractorService.getFromCOS(fileName);
+        if (cosPreviewPath) {
+          console.log(`从COS获取预览图成功: ${cosPreviewPath}`);
+
+          // 尝试获取网页标题
+          let pageTitle = '';
+          try {
+            const titleResponse = await axios.get(url, {
+              headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+              },
+              timeout: 5000,
+              httpsAgent: new https.Agent({
+                rejectUnauthorized: false
+              })
+            });
+
+            const titleMatch = titleResponse.data.match(/<title[^>]*>([^<]+)<\/title>/i);
+            if (titleMatch && titleMatch[1]) {
+              pageTitle = titleMatch[1].trim();
+              console.log(`提取到网页标题: ${pageTitle}`);
+            }
+
+            if (url.includes('quark.cn') || url.includes('ai.quark.cn')) {
+              pageTitle = '夸克';
+            }
+          } catch (error) {
+            console.error('获取网页标题失败:', error.message);
+          }
+
+          return res.json({
+            previewImage: cosPreviewPath,
+            pageTitle: pageTitle || ''
+          });
         }
       } catch (error) {
-        console.error('获取网页标题失败:', error.message);
+        console.error('从COS获取预览图失败:', error.message);
       }
-
-      return res.json({
-        previewImage: publicPath,
-        pageTitle: pageTitle || ''
-      });
     }
 
     // 首先尝试使用图片提取服务

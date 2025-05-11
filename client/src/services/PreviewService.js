@@ -156,11 +156,26 @@ const PreviewService = {
         return { success: false, message: '无效的文件对象' };
       }
 
+      // 检查文件类型
+      if (!file.type.startsWith('image/')) {
+        console.error('文件类型不是图片:', file.type);
+        return { success: false, message: '只能上传图片文件' };
+      }
+
+      // 检查文件大小
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSize) {
+        console.error('文件太大:', file.size);
+        return { success: false, message: '图片文件不能超过5MB' };
+      }
+
       // 创建FormData对象
       const formData = new FormData();
       formData.append('image', file);
 
       console.log('PreviewService: 发送上传请求');
+
+      // 设置较长的超时时间，因为上传到COS可能需要更多时间
       const response = await axios.post(
         '/api/preview/upload',
         formData,
@@ -168,7 +183,8 @@ const PreviewService = {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${token}`
-          }
+          },
+          timeout: 30000 // 30秒超时
         }
       );
 
@@ -186,9 +202,28 @@ const PreviewService = {
       return response.data;
     } catch (error) {
       console.error('上传预览图失败:', error);
+
+      // 提供更详细的错误信息
+      let errorMessage = '上传预览图失败';
+
+      if (error.response) {
+        // 服务器返回了错误响应
+        errorMessage = error.response.data?.message || `服务器错误: ${error.response.status}`;
+      } else if (error.request) {
+        // 请求已发送但没有收到响应
+        if (error.code === 'ECONNABORTED') {
+          errorMessage = '上传超时，请稍后重试';
+        } else {
+          errorMessage = '网络错误，无法连接到服务器';
+        }
+      } else {
+        // 设置请求时发生错误
+        errorMessage = error.message || '未知错误';
+      }
+
       return {
         success: false,
-        message: error.response?.data?.message || error.message || '上传预览图失败'
+        message: errorMessage
       };
     }
   }

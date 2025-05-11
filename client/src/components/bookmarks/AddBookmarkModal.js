@@ -237,17 +237,35 @@ const AddBookmarkModal = ({ onClose }) => {
 
     try {
       setUploadingImage(true);
+
+      // 检查文件类型
+      if (!file.type.startsWith('image/')) {
+        setError('只能上传图片文件');
+        return;
+      }
+
+      // 检查文件大小
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSize) {
+        setError('图片文件不能超过5MB');
+        return;
+      }
+
       const result = await PreviewService.uploadImage(file);
-      if (result.previewImage) {
+      if (result && result.success && result.previewImage) {
         setFormData({
           ...formData,
           previewImage: result.previewImage
         });
         setPreviewMode('upload');
+        setError(''); // 清除之前的错误
+      } else {
+        console.error('上传图片返回无效结果:', result);
+        setError(result?.message || '上传图片失败，请稍后重试');
       }
     } catch (error) {
       console.error('上传图片失败:', error);
-      setError('上传图片失败');
+      setError('上传图片失败，请稍后重试');
     } finally {
       setUploadingImage(false);
     }
@@ -272,17 +290,29 @@ const AddBookmarkModal = ({ onClose }) => {
 
     try {
       setUploadingImage(true);
+
+      // 检查文件大小
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (blob.size > maxSize) {
+        setError('图片文件不能超过5MB');
+        return;
+      }
+
       const result = await PreviewService.uploadImage(blob);
-      if (result.previewImage) {
+      if (result && result.success && result.previewImage) {
         setFormData({
           ...formData,
           previewImage: result.previewImage
         });
         setPreviewMode('paste');
+        setError(''); // 清除之前的错误
+      } else {
+        console.error('粘贴图片上传返回无效结果:', result);
+        setError(result?.message || '粘贴图片失败，请尝试使用上传按钮');
       }
     } catch (error) {
       console.error('粘贴图片失败:', error);
-      setError('粘贴图片失败');
+      setError('粘贴图片失败，请尝试使用上传按钮');
     } finally {
       setUploadingImage(false);
     }

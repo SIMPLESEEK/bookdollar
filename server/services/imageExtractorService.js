@@ -22,10 +22,20 @@ try {
   console.error('腾讯云COS SDK加载失败:', error.message);
 }
 
-// 确保预览图目录存在
-const previewDir = path.join(__dirname, '../../client/public/previews');
-if (!fs.existsSync(previewDir)) {
-  fs.mkdirSync(previewDir, { recursive: true });
+// 在Vercel环境中，我们不能依赖本地文件系统
+// 定义预览图目录路径，但在Vercel环境中不会实际创建
+const previewDir = process.env.VERCEL
+  ? '/tmp/previews' // 在Vercel中使用临时目录
+  : path.join(__dirname, '../../client/public/previews');
+
+// 只在非Vercel环境中创建目录
+if (!process.env.VERCEL && !fs.existsSync(previewDir)) {
+  try {
+    fs.mkdirSync(previewDir, { recursive: true });
+    console.log(`[图片提取] 创建预览图目录: ${previewDir}`);
+  } catch (error) {
+    console.error(`[图片提取] 创建预览图目录失败: ${error.message}`);
+  }
 }
 
 /**
@@ -232,14 +242,28 @@ async function extractImageFromUrl(url) {
         cosUrl = await uploadToCOS(fileName, imageResponse.data);
         console.log(`[图片提取] 图片已上传到腾讯云COS: ${cosUrl}`);
 
-        // 同时保存到本地作为缓存
-        await promisify(fs.writeFile)(filePath, imageResponse.data);
-        console.log(`[图片提取] 图片已保存到本地作为缓存: ${filePath}`);
+        // 在非Vercel环境中，同时保存到本地作为缓存
+        if (!process.env.VERCEL) {
+          try {
+            await promisify(fs.writeFile)(filePath, imageResponse.data);
+            console.log(`[图片提取] 图片已保存到本地作为缓存: ${filePath}`);
+          } catch (fsError) {
+            console.error(`[图片提取] 保存到本地缓存失败: ${fsError.message}`);
+          }
+        }
+
+        // 构建COS URL
+        let finalUrl;
+        if (process.env.COS_DOMAIN) {
+          finalUrl = `${process.env.COS_DOMAIN}/previews/${fileName}`;
+        } else {
+          finalUrl = `https://${process.env.COS_BUCKET}.cos.${process.env.COS_REGION || 'ap-guangzhou'}.myqcloud.com/previews/${fileName}`;
+        }
 
         // 返回COS URL
         return {
           success: true,
-          previewImage: `/previews/${fileName}`, // 使用相对路径，便于前端访问
+          previewImage: finalUrl, // 使用完整的COS URL
           originalImageUrl: imageUrl,
           pageTitle: pageTitle || ''
         };
@@ -248,13 +272,28 @@ async function extractImageFromUrl(url) {
       }
     }
 
-    // 如果COS上传失败或未配置COS，保存到本地
-    await promisify(fs.writeFile)(filePath, imageResponse.data);
-    console.log(`[图片提取] 图片已保存到本地: ${filePath}`);
+    // 如果COS上传失败或未配置COS
+    if (!process.env.VERCEL) {
+      // 在非Vercel环境中，保存到本地
+      try {
+        await promisify(fs.writeFile)(filePath, imageResponse.data);
+        console.log(`[图片提取] 图片已保存到本地: ${filePath}`);
 
+        return {
+          success: true,
+          previewImage: publicPath,
+          originalImageUrl: imageUrl,
+          pageTitle: pageTitle || ''
+        };
+      } catch (fsError) {
+        console.error(`[图片提取] 保存到本地失败: ${fsError.message}`);
+      }
+    }
+
+    // 在Vercel环境中，如果COS上传失败，返回失败
     return {
-      success: true,
-      previewImage: publicPath,
+      success: false,
+      previewImage: '',
       originalImageUrl: imageUrl,
       pageTitle: pageTitle || ''
     };
@@ -663,7 +702,7 @@ function resolveUrl(url, base) {
 async function uploadToCOS(fileName, fileContent) {
   if (!cos || !process.env.COS_BUCKET) {
     console.log('[图片提取] 未配置腾讯云COS，跳过上传');
-    return;
+    return null;
   }
 
   try {
@@ -683,16 +722,14 @@ async function uploadToCOS(fileName, fileContent) {
     });
 
     // 构建COS URL
-    let url = result.Location;
-
-    // 如果没有返回Location，手动构建URL
-    if (!url) {
-      url = `https://${process.env.COS_BUCKET}.cos.${process.env.COS_REGION || 'ap-guangzhou'}.myqcloud.com/${key}`;
-    }
+    let url;
 
     // 如果配置了自定义域名，使用自定义域名
     if (process.env.COS_DOMAIN) {
       url = `${process.env.COS_DOMAIN}/${key}`;
+    } else {
+      // 否则使用默认的COS URL
+      url = `https://${process.env.COS_BUCKET}.cos.${process.env.COS_REGION || 'ap-guangzhou'}.myqcloud.com/${key}`;
     }
 
     console.log(`[图片提取] 预览图已上传到腾讯云COS: ${url}`);
@@ -733,17 +770,19 @@ async function getFromCOS(fileName) {
 
       console.log(`[图片提取] 预览图在腾讯云COS上存在: ${url}`);
 
-      // 同时下载到本地作为缓存
-      try {
-        await cos.getObject({
-          Bucket: process.env.COS_BUCKET,
-          Region: process.env.COS_REGION || 'ap-guangzhou',
-          Key: key,
-          Output: fs.createWriteStream(path.join(previewDir, fileName))
-        });
-        console.log(`[图片提取] 预览图已从腾讯云COS下载到本地缓存: ${fileName}`);
-      } catch (downloadError) {
-        console.error('[图片提取] 下载到本地缓存失败，但文件在COS上存在:', downloadError);
+      // 在非Vercel环境中，同时下载到本地作为缓存
+      if (!process.env.VERCEL) {
+        try {
+          await cos.getObject({
+            Bucket: process.env.COS_BUCKET,
+            Region: process.env.COS_REGION || 'ap-guangzhou',
+            Key: key,
+            Output: fs.createWriteStream(path.join(previewDir, fileName))
+          });
+          console.log(`[图片提取] 预览图已从腾讯云COS下载到本地缓存: ${fileName}`);
+        } catch (downloadError) {
+          console.error('[图片提取] 下载到本地缓存失败，但文件在COS上存在:', downloadError);
+        }
       }
 
       return url;
