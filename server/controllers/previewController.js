@@ -162,13 +162,41 @@ exports.generatePreview = async (req, res) => {
 
     console.log(`正在为URL生成预览图: ${url}`);
 
+    // 验证URL格式
+    let validUrl = url;
+    try {
+      // 如果URL不以http或https开头，添加https://
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        validUrl = 'https://' + url;
+        console.log(`URL格式修正: ${validUrl}`);
+      }
+
+      // 尝试解析URL
+      new URL(validUrl);
+    } catch (urlError) {
+      console.error(`URL格式无效: ${urlError.message}`);
+      // 继续处理，但记录错误
+      console.log('尝试继续处理无效URL');
+    }
+
     // 首先尝试使用图片提取服务
     if (imageExtractorService) {
       try {
         console.log('尝试使用图片提取服务获取预览图');
-        const extractResult = await imageExtractorService.extractImageFromUrl(url);
+        console.log(`URL: ${validUrl}`);
 
-        if (extractResult.success) {
+        // 在Vercel环境中，添加更多的日志
+        if (process.env.VERCEL) {
+          console.log('在Vercel环境中运行图片提取服务');
+          console.log(`COS配置: Bucket=${process.env.COS_BUCKET ? '已配置' : '未配置'}, Region=${process.env.COS_REGION || '未配置'}`);
+          console.log(`COS域名: ${process.env.COS_DOMAIN || '未配置'}`);
+          console.log(`Node环境: ${process.env.NODE_ENV}`);
+        }
+
+        const extractResult = await imageExtractorService.extractImageFromUrl(validUrl);
+        console.log('图片提取服务返回结果:', JSON.stringify(extractResult, null, 2));
+
+        if (extractResult && extractResult.success) {
           console.log(`图片提取成功: ${extractResult.previewImage}, 标题: ${extractResult.pageTitle || '无标题'}`);
           return res.json({
             previewImage: extractResult.previewImage,
@@ -176,10 +204,16 @@ exports.generatePreview = async (req, res) => {
           });
         } else {
           console.log('图片提取失败，尝试其他方法');
+          if (extractResult) {
+            console.log('失败原因:', extractResult.message || '未知');
+          }
         }
       } catch (error) {
         console.error('图片提取失败:', error.message);
+        console.error('错误堆栈:', error.stack);
       }
+    } else {
+      console.log('图片提取服务不可用');
     }
 
     // 如果图片提取服务不可用或失败，尝试使用MCP截图服务
@@ -360,20 +394,52 @@ exports.getPreview = async (req, res) => {
       }
     }
 
+    // 验证URL格式
+    let validUrl = url;
+    try {
+      // 如果URL不以http或https开头，添加https://
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        validUrl = 'https://' + url;
+        console.log(`URL格式修正: ${validUrl}`);
+      }
+
+      // 尝试解析URL
+      new URL(validUrl);
+    } catch (urlError) {
+      console.error(`URL格式无效: ${urlError.message}`);
+      // 继续处理，但记录错误
+      console.log('尝试继续处理无效URL');
+    }
+
     // 首先尝试使用图片提取服务
     if (imageExtractorService) {
       try {
         // 检查腾讯云COS上是否有预览图
+        console.log(`尝试从COS获取预览图: ${fileName}`);
         const extractorCosPreviewPath = await imageExtractorService.getFromCOS(fileName);
         if (extractorCosPreviewPath) {
-          console.log('从图片提取服务的COS缓存获取预览图成功');
-          return res.json({ previewImage: extractorCosPreviewPath });
+          console.log(`从图片提取服务的COS缓存获取预览图成功: ${extractorCosPreviewPath}`);
+          return res.json({
+            previewImage: extractorCosPreviewPath,
+            pageTitle: '' // 这里可以添加获取标题的逻辑
+          });
         }
 
         // 如果本地和COS都没有，尝试提取图片
-        console.log('尝试使用图片提取服务获取预览图');
-        const extractResult = await imageExtractorService.extractImageFromUrl(url);
-        if (extractResult.success) {
+        console.log(`尝试使用图片提取服务获取预览图: ${validUrl}`);
+
+        // 在Vercel环境中，添加更多的日志
+        if (process.env.VERCEL) {
+          console.log('在Vercel环境中运行图片提取服务');
+          console.log(`COS配置: Bucket=${process.env.COS_BUCKET ? '已配置' : '未配置'}, Region=${process.env.COS_REGION || '未配置'}`);
+          console.log(`COS域名: ${process.env.COS_DOMAIN || '未配置'}`);
+          console.log(`Node环境: ${process.env.NODE_ENV}`);
+        }
+
+        const extractResult = await imageExtractorService.extractImageFromUrl(validUrl);
+        console.log('图片提取服务返回结果:', JSON.stringify(extractResult, null, 2));
+
+        if (extractResult && extractResult.success) {
           console.log(`图片提取成功: ${extractResult.previewImage}, 标题: ${extractResult.pageTitle || '无标题'}`);
           return res.json({
             previewImage: extractResult.previewImage,
@@ -381,9 +447,13 @@ exports.getPreview = async (req, res) => {
           });
         } else {
           console.log('图片提取失败，尝试其他方法');
+          if (extractResult) {
+            console.log('失败原因:', extractResult.message || '未知');
+          }
         }
       } catch (error) {
         console.error('图片提取服务错误:', error.message);
+        console.error('错误堆栈:', error.stack);
       }
     }
 
