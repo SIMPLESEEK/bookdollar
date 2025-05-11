@@ -50,7 +50,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// 启动服务器
-app.listen(PORT, () => {
-  console.log(`服务器运行在端口: ${PORT}`);
-});
+// 在本地环境中启动服务器
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`服务器运行在端口: ${PORT}`);
+  });
+}
+
+// 为 Vercel 导出应用
+module.exports = app;
