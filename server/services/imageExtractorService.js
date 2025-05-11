@@ -711,11 +711,28 @@ async function uploadToCOS(fileName, fileContent) {
     // 确保文件名是唯一的
     const key = `previews/${fileName}`;
 
+    // 确保文件内容是Buffer
+    let contentBuffer = fileContent;
+    if (typeof fileContent === 'string' && fileContent.startsWith('/')) {
+      // 如果是文件路径，读取文件内容
+      try {
+        contentBuffer = await promisify(fs.readFile)(fileContent);
+        console.log('[图片提取] 从文件路径读取内容上传到COS');
+      } catch (readError) {
+        console.error('[图片提取] 读取文件失败:', readError);
+        if (process.env.VERCEL) {
+          throw new Error('在Vercel环境中无法读取本地文件');
+        }
+        return null;
+      }
+    }
+
+    // 上传到COS
     const result = await cos.putObject({
       Bucket: process.env.COS_BUCKET,
       Region: process.env.COS_REGION || 'ap-guangzhou',
       Key: key,
-      Body: fileContent,
+      Body: contentBuffer,
       ContentType: 'image/jpeg',
       // 添加缓存控制头，允许缓存30天
       CacheControl: 'max-age=2592000'
